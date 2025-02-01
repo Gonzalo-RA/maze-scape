@@ -1,0 +1,224 @@
+[gd_scene load_steps=19 format=3 uid="uid://d24aht5nw6hd3"]
+
+[ext_resource type="Texture2D" uid="uid://4elfhyhv23qr" path="res://Assets/Images/GUI/UI.png" id="1_8k1ol"]
+[ext_resource type="Script" path="res://Scripts/GUI/control_center.gd" id="1_id3kw"]
+[ext_resource type="Texture2D" uid="uid://cy6t284vcl1cd" path="res://Assets/Images/GUI/health_bar.png" id="2_3kkv2"]
+[ext_resource type="Script" path="res://Scripts/GUI/Health_bar.gd" id="2_5jbxq"]
+[ext_resource type="Texture2D" uid="uid://c5yrfytofoq1e" path="res://Assets/Images/GUI/mana_bar.png" id="3_tf7j1"]
+[ext_resource type="Texture2D" uid="uid://b801ynlkqfn5x" path="res://Assets/Images/GUI/xp_bar.png" id="4_3lm2q"]
+[ext_resource type="Script" path="res://Scripts/GUI/Mana_bar.gd" id="4_4mq32"]
+[ext_resource type="Texture2D" uid="uid://cmjinddirs6p5" path="res://Assets/Images/GUI/energy_bar.png" id="5_od54o"]
+[ext_resource type="Texture2D" uid="uid://bohjq5qai8k06" path="res://Assets/Images/Items/static_assets.png" id="6_aerxo"]
+[ext_resource type="Script" path="res://Scripts/GUI/Energy_bar.gd" id="6_q4ub0"]
+[ext_resource type="Script" path="res://Scripts/GUI/coins_number.gd" id="7_65qwx"]
+[ext_resource type="FontFile" uid="uid://digbq0mlkbh3p" path="res://Assets/Fonts/Schrîdinger.ttf" id="7_mvvrx"]
+[ext_resource type="Script" path="res://Scripts/GUI/XP_bar.gd" id="8_oai4h"]
+[ext_resource type="Texture2D" uid="uid://d2f2mn38xgxkg" path="res://Assets/Images/GUI/button_free.png" id="11_losmg"]
+[ext_resource type="Texture2D" uid="uid://dq8egdbdoxkmf" path="res://Assets/Images/GUI/button_pressed.png" id="12_vo0mc"]
+[ext_resource type="PackedScene" uid="uid://bqv54e7y1x2k4" path="res://Scenes/UI/inventory_.tscn" id="13_srmvp"]
+[ext_resource type="PackedScene" uid="uid://bxeq1k0rffeh2" path="res://Scenes/UI/stats.tscn" id="16_182sv"]
+
+[sub_resource type="Theme" id="Theme_2a52n"]
+default_font = ExtResource("7_mvvrx")
+default_font_size = 19
+
+[node name="GUI" type="CanvasLayer"]
+offset = Vector2(0, 559)
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 559)
+script = ExtResource("1_id3kw")
+
+[node name="GUI_background" type="TextureRect" parent="."]
+offset_right = 200.0
+offset_bottom = 30.0
+size_flags_horizontal = 8
+texture = ExtResource("1_8k1ol")
+
+[node name="Health_bar" type="ColorRect" parent="."]
+offset_left = 85.0
+offset_top = 4.33333
+offset_right = 223.0
+offset_bottom = 7.33333
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_5jbxq")
+
+[node name="value" type="TextureRect" parent="Health_bar"]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 3.0
+texture = ExtResource("2_3kkv2")
+expand_mode = 1
+
+[node name="Mana_bar" type="ColorRect" parent="."]
+offset_left = 85.0
+offset_top = 11.3333
+offset_right = 223.0
+offset_bottom = 14.3333
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_4mq32")
+
+[node name="value" type="TextureRect" parent="Mana_bar"]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 3.0
+texture = ExtResource("3_tf7j1")
+expand_mode = 1
+
+[node name="Energy_bar" type="ColorRect" parent="."]
+offset_left = 85.0
+offset_top = 18.3333
+offset_right = 223.0
+offset_bottom = 21.3333
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_q4ub0")
+
+[node name="value" type="TextureRect" parent="Energy_bar"]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 3.0
+texture = ExtResource("5_od54o")
+expand_mode = 1
+
+[node name="XP_bar" type="ColorRect" parent="."]
+offset_left = 85.0
+offset_top = 25.0
+offset_right = 223.0
+offset_bottom = 26.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_oai4h")
+
+[node name="value" type="TextureRect" parent="XP_bar"]
+layout_mode = 0
+offset_bottom = 1.0
+texture = ExtResource("4_3lm2q")
+expand_mode = 1
+
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(44, 23.6667)
+scale = Vector2(3, 3)
+texture = ExtResource("6_aerxo")
+hframes = 10
+vframes = 10
+frame = 30
+
+[node name="Inventory_Button" type="Button" parent="."]
+offset_left = 370.0
+offset_top = 3.0
+offset_right = 381.0
+offset_bottom = 26.0
+
+[node name="inventory_button" type="TextureButton" parent="Inventory_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_losmg")
+texture_pressed = ExtResource("12_vo0mc")
+
+[node name="Stats_Button" type="Button" parent="."]
+offset_left = 357.0
+offset_top = 3.0
+offset_right = 368.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("7_mvvrx")
+theme_override_font_sizes/font_size = 6
+
+[node name="stats_button" type="TextureButton" parent="Stats_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_losmg")
+texture_pressed = ExtResource("12_vo0mc")
+
+[node name="Save_Button" type="Button" parent="."]
+offset_left = 327.0
+offset_top = 3.0
+offset_right = 338.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("7_mvvrx")
+theme_override_font_sizes/font_size = 6
+
+[node name="save_button" type="TextureButton" parent="Save_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_losmg")
+texture_pressed = ExtResource("12_vo0mc")
+
+[node name="Load_Button" type="Button" parent="."]
+offset_left = 340.0
+offset_top = 3.0
+offset_right = 351.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("7_mvvrx")
+theme_override_font_sizes/font_size = 6
+
+[node name="load_button" type="TextureButton" parent="Load_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_losmg")
+texture_pressed = ExtResource("12_vo0mc")
+
+[node name="coins_number" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 152.0
+offset_bottom = 39.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_2a52n")
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("7_65qwx")
+
+[node name="Inventory_" parent="." instance=ExtResource("13_srmvp")]
+visible = false
+offset_left = 288.0
+offset_right = 288.0
+offset_bottom = 0.0
+size_flags_horizontal = 4
+
+[node name="Stats" parent="." instance=ExtResource("16_182sv")]
+visible = false
+offset_left = 96.0
+offset_right = 96.0
+
+[connection signal="pressed" from="Inventory_Button/inventory_button" to="Inventory_" method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="Stats_Button/stats_button" to="Stats" method="_on_stats_button_pressed"]
+[connection signal="pressed" from="Save_Button/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Load_Button/load_button" to="." method="_on_load_button_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://0ba7hxy75dpw"]
+
+[ext_resource type="Script" path="res://Scripts/map_items/traps.gd" id="1_3s6cf"]
+[ext_resource type="Texture2D" uid="uid://dssadq1apqrur" path="res://Assets/Images/Background/maps-assets.png" id="1_c6dba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgm5c"]
+size = Vector2(6, 6)
+
+[sub_resource type="Animation" id="Animation_asqeo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_hthwb"]
+resource_name = "Spike"
+length = 1.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(4, 2), Vector2i(5, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_fvrd3"]
+resource_name = "Wash"
+length = 0.466673
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 5), Vector2i(5, 5), Vector2i(7, 5), Vector2i(6, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oy6vl"]
+_data = {
+"RESET": SubResource("Animation_asqeo"),
+"Spike": SubResource("Animation_hthwb"),
+"Wash": SubResource("Animation_fvrd3")
+}
+
+[node name="Traps" type="Area2D"]
+script = ExtResource("1_3s6cf")
+
+[node name="Trap_area" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mgm5c")
+debug_color = Color(0.329412, 0.0745098, 0.137255, 0.533333)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c6dba")
+hframes = 19
+vframes = 9
+frame = 100
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Trap_area3" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_mgm5c")
+debug_color = Color(0.239216, 0.431373, 0.992157, 0.454902)
+
+[node name="Amination" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oy6vl")
+}
+
+[node name="Danger_area" type="Area2D" parent="."]
+
+[node name="Trap_area2" type="CollisionShape2D" parent="Danger_area"]
+shape = SubResource("RectangleShape2D_mgm5c")
+debug_color = Color(0.329412, 0.0745098, 0.137255, 0.533333)
+
+[node name="Solid_area" type="Area2D" parent="."]
+
+[node name="Trap_area2" type="CollisionShape2D" parent="Solid_area"]
+shape = SubResource("RectangleShape2D_mgm5c")
+debug_color = Color(0.329412, 0.0745098, 0.137255, 0.533333)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="Danger_area" to="." method="_on_danger_area_body_exited"]
+[connection signal="child_entered_tree" from="Danger_area/Trap_area2" to="." method="_on_trap_area_child_entered_tree"]
+[connection signal="body_entered" from="Solid_area" to="." method="_on_solid_area_body_entered"]
+[connection signal="body_exited" from="Solid_area" to="." method="_on_solid_area_body_exited"]
+[connection signal="child_entered_tree" from="Solid_area/Trap_area2" to="." method="_on_trap_area_child_entered_tree"]

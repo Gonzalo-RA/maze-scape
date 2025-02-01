@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3qmkg0i2oax0"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/item_base.gd" id="1_dqbpi"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_dqbpi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

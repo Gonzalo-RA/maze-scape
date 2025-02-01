@@ -1,0 +1,586 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxeq1k0rffeh2"]
+
+[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="1_1aglo"]
+[ext_resource type="Script" path="res://Scripts/GUI/stats.gd" id="2_7crap"]
+[ext_resource type="Texture2D" uid="uid://8qj6waysqy0i" path="res://Assets/Images/GUI/Stats.png" id="2_thfa0"]
+[ext_resource type="Texture2D" uid="uid://ddlsj24g2cxnf" path="res://Assets/Images/GUI/add_button.png" id="4_uh3un"]
+[ext_resource type="Texture2D" uid="uid://b74qstte0ok16" path="res://Assets/Images/GUI/add_button_active.png" id="4_v4ly3"]
+[ext_resource type="Texture2D" uid="uid://d3q85w2cyokqm" path="res://Assets/Images/GUI/subs_button_active.png" id="6_10yis"]
+[ext_resource type="Texture2D" uid="uid://do7p7ovesxolx" path="res://Assets/Images/GUI/subs_button_disabled.png" id="7_whihb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1ufa"]
+
+[node name="Stats" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_1aglo")
+script = ExtResource("2_7crap")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_thfa0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -93.0
+offset_right = 96.0
+offset_bottom = 93.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s1ufa")
+
+[node name="Personal_Info" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -87.0
+offset_right = 58.0
+offset_bottom = -76.0
+scale = Vector2(0.7, 0.7)
+
+[node name="Name" type="Label" parent="Personal_Info"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -6.0
+offset_right = 43.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Satisgiatos"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="Personal_Info"]
+layout_mode = 0
+offset_left = -82.8571
+offset_top = 17.1429
+offset_right = -42.8571
+offset_bottom = 29.1429
+scale = Vector2(0.7, 0.7)
+text = "Level"
+
+[node name="value" type="Label" parent="Personal_Info/Level"]
+layout_mode = 0
+offset_left = 48.9796
+offset_right = 88.9796
+offset_bottom = 12.0
+text = "1"
+
+[node name="Experience" type="Label" parent="Personal_Info"]
+layout_mode = 0
+offset_left = -17.1429
+offset_top = 17.1429
+offset_right = 22.8572
+offset_bottom = 29.1429
+scale = Vector2(0.7, 0.7)
+text = "XP"
+
+[node name="value" type="Label" parent="Personal_Info/Experience"]
+layout_mode = 0
+offset_left = 77.551
+offset_right = 117.551
+offset_bottom = 12.0
+text = "0"
+
+[node name="Health" type="Label" parent="Personal_Info"]
+layout_mode = 0
+offset_left = -82.8571
+offset_top = 28.5714
+offset_right = -42.8571
+offset_bottom = 40.5714
+scale = Vector2(0.7, 0.7)
+text = "Health
+"
+
+[node name="value" type="Label" parent="Personal_Info/Health"]
+layout_mode = 0
+offset_left = 48.9796
+offset_right = 88.9796
+offset_bottom = 12.0
+
+[node name="Mana" type="Label" parent="Personal_Info"]
+layout_mode = 0
+offset_left = -82.8571
+offset_top = 50.0
+offset_right = -42.8571
+offset_bottom = 62.0
+scale = Vector2(0.7, 0.7)
+text = "Mana
+"
+
+[node name="value" type="Label" parent="Personal_Info/Mana"]
+layout_mode = 0
+offset_left = 42.8571
+offset_right = 82.8571
+offset_bottom = 12.0
+
+[node name="Energy" type="Label" parent="Personal_Info"]
+layout_mode = 0
+offset_left = -82.8572
+offset_top = 38.5714
+offset_right = -42.8572
+offset_bottom = 50.5714
+scale = Vector2(0.7, 0.7)
+text = "Energy"
+
+[node name="value" type="Label" parent="Personal_Info/Energy"]
+layout_mode = 0
+offset_left = 48.9796
+offset_right = 88.9796
+offset_bottom = 12.0
+
+[node name="Stats_infos" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -87.0
+offset_top = -34.0
+offset_right = 73.0
+offset_bottom = 75.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Modificator" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = -14.0
+offset_right = 190.0
+offset_bottom = -2.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(0.666667, 0.666667, 0.666667, 1)
+text = "Mod"
+
+[node name="Item_modofocator" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = -14.0
+offset_right = 250.0
+offset_bottom = 13.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(0.666667, 0.666667, 0.666667, 1)
+text = "Item mod."
+
+[node name="Strength" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_right = 63.0
+offset_bottom = 12.0
+text = "Strength
+"
+
+[node name="value" type="Label" parent="Stats_infos/Strength"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Strength"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Strength"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Constitution" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 71.0
+offset_bottom = 26.0
+text = "Constitution
+"
+
+[node name="value" type="Label" parent="Stats_infos/Constitution"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Constitution"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Constitution"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Dexterity" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 63.0
+offset_bottom = 40.0
+text = "Dexterity
+"
+
+[node name="value" type="Label" parent="Stats_infos/Dexterity"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Dexterity"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Dexterity"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Intelligence" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 63.0
+offset_bottom = 54.0
+text = "Intelligence
+"
+
+[node name="value" type="Label" parent="Stats_infos/Intelligence"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Intelligence"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Intelligence"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Wisdom" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 63.0
+offset_bottom = 68.0
+text = "Wisdom
+"
+
+[node name="value" type="Label" parent="Stats_infos/Wisdom"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Wisdom"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Wisdom"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Charisma" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 63.0
+offset_bottom = 82.0
+text = "Charisma
+"
+
+[node name="value" type="Label" parent="Stats_infos/Charisma"]
+layout_mode = 0
+offset_left = 92.0
+offset_right = 132.0
+offset_bottom = 12.0
+text = "10
+"
+
+[node name="modif" type="Label" parent="Stats_infos/Charisma"]
+layout_mode = 0
+offset_left = 134.0
+offset_right = 174.0
+offset_bottom = 12.0
+
+[node name="item_mod" type="Label" parent="Stats_infos/Charisma"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 224.0
+offset_bottom = 12.0
+
+[node name="Add_points" type="Label" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = -18.0
+offset_right = 106.0
+offset_bottom = -4.0
+theme_override_colors/font_color = Color(0.333333, 0.333333, 0.333333, 1)
+text = "5"
+horizontal_alignment = 1
+
+[node name="Add_strength" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = -1.0
+offset_right = 119.0
+offset_bottom = 10.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Add_constitution" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 13.0
+offset_right = 119.0
+offset_bottom = 24.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Add_dexterity" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 26.0
+offset_right = 119.0
+offset_bottom = 37.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Add_inteligence" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 41.0
+offset_right = 119.0
+offset_bottom = 52.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Add_wisdom" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 55.0
+offset_right = 119.0
+offset_bottom = 66.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Add_charisma" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 69.0
+offset_right = 119.0
+offset_bottom = 80.0
+disabled = true
+texture_normal = ExtResource("4_v4ly3")
+texture_pressed = ExtResource("4_uh3un")
+texture_disabled = ExtResource("4_uh3un")
+
+[node name="Subs_strength" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -1.0
+offset_right = 87.0
+offset_bottom = 10.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Subs_constitution" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 13.0
+offset_right = 87.0
+offset_bottom = 24.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Subs_dexterity" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 26.0
+offset_right = 87.0
+offset_bottom = 37.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Subs_inteligence" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 41.0
+offset_right = 87.0
+offset_bottom = 52.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Subs_wisdom" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 55.0
+offset_right = 87.0
+offset_bottom = 66.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Subs_charisma" type="TextureButton" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 69.0
+offset_right = 87.0
+offset_bottom = 80.0
+disabled = true
+texture_normal = ExtResource("6_10yis")
+texture_pressed = ExtResource("7_whihb")
+texture_disabled = ExtResource("7_whihb")
+
+[node name="Confirm" type="Button" parent="Stats_infos"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 82.0
+offset_right = 124.0
+offset_bottom = 102.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.333, 0.333, 1, 1)
+text = "Confirm"
+flat = true
+
+[node name="Combat_info" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = 11.0
+offset_right = 53.0
+offset_bottom = 22.0
+scale = Vector2(0.7, 0.7)
+
+[node name="Attack" type="Label" parent="Combat_info"]
+layout_mode = 0
+offset_left = -88.5714
+offset_top = 17.1429
+offset_right = -48.5714
+offset_bottom = 29.1429
+scale = Vector2(0.7, 0.7)
+text = "Attack"
+
+[node name="value" type="Label" parent="Combat_info/Attack"]
+layout_mode = 0
+offset_left = 77.551
+offset_top = -2.04082
+offset_right = 117.551
+offset_bottom = 9.95918
+text = "1"
+
+[node name="Damage" type="Label" parent="Combat_info"]
+layout_mode = 0
+offset_left = -88.5714
+offset_top = 27.1429
+offset_right = -46.5714
+offset_bottom = 39.1429
+scale = Vector2(0.7, 0.7)
+text = "Damage
+"
+
+[node name="value" type="Label" parent="Combat_info/Damage"]
+layout_mode = 0
+offset_left = 77.551
+offset_top = -2.04082
+offset_right = 117.551
+offset_bottom = 9.95918
+text = "1"
+
+[node name="Speed" type="Label" parent="Combat_info"]
+layout_mode = 0
+offset_left = -88.5714
+offset_top = 35.7143
+offset_right = -48.5714
+offset_bottom = 47.7143
+scale = Vector2(0.7, 0.7)
+text = "Speed
+"
+
+[node name="value" type="Label" parent="Combat_info/Speed"]
+layout_mode = 0
+offset_left = 77.551
+offset_right = 117.551
+offset_bottom = 12.0
+text = "0"
+
+[node name="Armor" type="Label" parent="Combat_info"]
+layout_mode = 0
+offset_left = -88.5714
+offset_top = 45.7143
+offset_right = -48.5714
+offset_bottom = 57.7143
+scale = Vector2(0.7, 0.7)
+text = "Armor"
+
+[node name="value" type="Label" parent="Combat_info/Armor"]
+layout_mode = 0
+offset_left = 77.551
+offset_right = 117.551
+offset_bottom = 12.0
+text = "0"
+
+[node name="Absorption" type="Label" parent="Combat_info"]
+layout_mode = 0
+offset_left = -88.5714
+offset_top = 55.7143
+offset_right = -26.5714
+offset_bottom = 67.7143
+scale = Vector2(0.7, 0.7)
+text = "Absorbtion
+"
+
+[node name="value" type="Label" parent="Combat_info/Absorption"]
+layout_mode = 0
+offset_left = 77.551
+offset_right = 117.551
+offset_bottom = 12.0
+text = "0"
+
+[connection signal="pressed" from="Stats_infos/Add_strength" to="." method="_on_add_strength_pressed"]
+[connection signal="pressed" from="Stats_infos/Add_constitution" to="." method="_on_add_constitution_pressed"]
+[connection signal="pressed" from="Stats_infos/Add_dexterity" to="." method="_on_add_dexterity_pressed"]
+[connection signal="pressed" from="Stats_infos/Add_inteligence" to="." method="_on_add_inteligence_pressed"]
+[connection signal="pressed" from="Stats_infos/Add_wisdom" to="." method="_on_add_wisdom_pressed"]
+[connection signal="pressed" from="Stats_infos/Add_charisma" to="." method="_on_add_charisma_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_strength" to="." method="_on_subs_strength_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_constitution" to="." method="_on_subs_constitution_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_dexterity" to="." method="_on_subs_dexterity_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_inteligence" to="." method="_on_subs_inteligence_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_wisdom" to="." method="_on_subs_wisdom_pressed"]
+[connection signal="pressed" from="Stats_infos/Subs_charisma" to="." method="_on_subs_charisma_pressed"]
+[connection signal="pressed" from="Stats_infos/Confirm" to="." method="_on_confirm_pressed"]
