@@ -11,6 +11,7 @@ const item_base = preload("res://Scenes/UI/item_base.tscn")
 @onready var BeltSlot3 = $BeltSlot_3
 @onready var BeltSlot4 = $BeltSlot_4
 #@onready var BeltSlot5 = $BeltSlot_5
+@onready var Trash = $Trash
 
 @onready var Item_info = $Item_Info
 
@@ -183,10 +184,12 @@ func release(cursor_pos):
 	if item_held == null:
 		return
 	var c = get_container_under_cursor(cursor_pos)
-	if c == null:
+	if c == Trash :
 		print('fuera!!!')
+		#return_item()
+		drop_item()
+	elif c == null :
 		return_item()
-		#drop_item()
 	elif c.has_method("insert_item"):
 		if c.insert_item(item_held):
 			item_held = null
