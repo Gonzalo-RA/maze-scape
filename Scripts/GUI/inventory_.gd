@@ -190,7 +190,7 @@ func release(cursor_pos):
 	elif c.has_method("delete_item") :
 		print('fuera!!!')
 		c.delete_item(item_held)
-		#drop_item()
+		drop_item()
 	elif c.has_method("insert_item"):
 		if c.insert_item(item_held):
 			item_held = null
@@ -208,8 +208,8 @@ func get_container_under_cursor(cursor_pos):
 	return null
 
 func drop_item():
-	 # Item deleted
-	item_held.queue_free()
+	# Item deleted
+	#item_held.queue_free()
 	item_held = null
 	to_drop = false
 
