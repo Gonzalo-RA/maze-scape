@@ -36,6 +36,7 @@ func _ready():
 	get_items_in_BackPack()
 
 func get_items_in_BackPack() :
+	print('inventory_.gd : 40 // ', 'get_items_in_BackPack' )
 	is_reload = true
 	for Items in BackPack.Back_Pack:
 		print(Items)
@@ -214,7 +215,7 @@ func return_item():
 	item_held = null
  
 func pickup_item(item_id):
-	print('inverntory_.gd -> pickup item : item_id : ' + item_id)
+	print('inventory_.gd : 218 -> pickup item : item_id : ' + item_id)
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(BackPack.Back_Pack[item_id]['icon_inventary']) 
