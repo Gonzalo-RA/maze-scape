@@ -192,62 +192,79 @@ func hurt_fx():
 func dead():
 
 	anim_state.travel('Dead')
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1).timeout
 	print('DEAD')
 	hero_data.alive = false
+	
 	#if !hero_data.emptpy_poquets :
-	return_items()
 		#pass
+	
+	## !!!! Aquí hay un problema y es por eso que comenté return_items()
+	##
+	return_items()
+	##
+	
 	current_state = states.MOVE
-	hero_data.update_stats()
+	##hero_data.update_stats()
 	hero_data.current_health = hero_data.max_health
 	hero_data.current_energy = hero_data.max_energy
 	hero_data.XP = Aeternus.XP_LEVELS[str(hero_data.Level)]
+	
+	## Esto debiera usarlo en caso de tener vidas, pero no.
 	##hero_data.lives -= 1
 	#self.Initial_Position
 	
 	##get_tree().reload_current_scene()
 	
 	self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
-	##get_tree().reload_current_scene()
-		
+	
 
 func return_items():
+	## ATENCIÓN AQUÍ ES DONDE SE GENERA EL ERROR DEL INVENTARIO!!!!!!
+	print('ATENCIÓN AQUÍ ES DONDE SE GENERA EL ERROR DEL INVENTARIO!!!!!!  func return_items(): en Hero.gd')
 	if !hero_data.alive :
-		print('RETURN ITEMS')
-		#randomize()
-		print(hero_data.Equiped_Items)
+		
+		print('Hero.gd : 227 ', hero_data.Equiped_Items)
+		
 		for remove in hero_data.Equiped_Items :
-			print('remove from Equiped after dead')
-			print(hero_data.Equiped_Items[remove])
+
+			print('Hero.gd : 231 ', hero_data.Equiped_Items[remove])
+			
+			##  ME PREGUNTO SI hero_data.Equiped_Items[remove] NO ESTÁ
+			## ENTREGANDO EL OBJETO EN EL BUEN FORMATO O
+			## NO CONTIENE TODA LA INFORMACIÓN NECESARIA
+			## QUE LA SIGUEINTE FUNCIÓN hero_data.remove_item NECESITA
+			## PARA PROCESAR EL ITEM Y DEAR EL ESPACIO LIMPLIO
+			
 			hero_data.remove_item(hero_data.Equiped_Items[remove], true)
+		
 		hero_data.Equiped_Items = {}
 		
 		for to_zero in hero_data.chart_of_equipment_modificators :
 			hero_data.chart_of_equipment_modificators[to_zero] = 0
 		
 		for item in BackPack.Back_Pack :
-			print(item)
-			#var rd_value = RandomNumberGenerator.new()
-			#var the_thing = returned_item.instantiate()
-			#the_thing.Data = BackPack.Back_Pack[item]
-			#the_thing.position = global_position
-			#the_thing.position.x = global_position.x + randf_range(-10, 10)
-			#the_thing.position.y = global_position.y + randf_range(-10, 10) 
-			#get_tree().get_root().add_child(the_thing)
+			print('Hero.gd : 247 ', item)
+			var rd_value = RandomNumberGenerator.new()
+			var the_thing = returned_item.instantiate()
+			the_thing.Data = BackPack.Back_Pack[item]
+			the_thing.position = global_position
+			the_thing.position.x = global_position.x + randf_range(-10, 10)
+			the_thing.position.y = global_position.y + randf_range(-10, 10) 
+			get_tree().get_root().add_child(the_thing)
 			print('HELLO?')
 		
 		BackPack.Treasure['Coins'] -= floor(BackPack.Treasure['Coins'] / 2)
 		BackPack.Back_Pack = {}
 		
-		print('Important Items')
+		print('Hero.gd : 260 ', 'Important Items')
 		print(!BackPack.Important_Items.is_empty())
 		if !BackPack.Important_Items.is_empty():
 			for importantItem in BackPack.Important_Items :
 				BackPack.Back_Pack[importantItem] = BackPack.Important_Items[importantItem]
 			BackPack.Important_Items = {}	
 		
-		hero_data.emptpy_poquets = true
+		#hero_data.emptpy_poquets = true
 
 func anim_equipment_update ():
 	for path in hero_data.Equipment_Data :
