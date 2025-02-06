@@ -184,12 +184,13 @@ func release(cursor_pos):
 	if item_held == null:
 		return
 	var c = get_container_under_cursor(cursor_pos)
-	if c == Trash :
-		print('fuera!!!')
-		#return_item()
-		drop_item()
-	elif c == null :
+	if c == null :
 		return_item()
+		return
+	elif c.has_method("delete_item") :
+		print('fuera!!!')
+		c.delete_item(item_held)
+		#drop_item()
 	elif c.has_method("insert_item"):
 		if c.insert_item(item_held):
 			item_held = null
