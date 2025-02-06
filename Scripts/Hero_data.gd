@@ -212,7 +212,7 @@ static var Equipment_Data = {
 	'GLOVES' : null,
 }
 
-static var emptpy_poquets = true
+#static var emptpy_poquets = true
 
 func _ready():
 	pass
@@ -340,19 +340,24 @@ static func wear_items(it):
 
 static func remove_item(item, dead = false):
 	print('unwear item')
-	#print(item)
-	#Equiped_Items.erase(item)
-	#print(ie)
+
 	var Item_to_remove = BackPack.Back_Pack[item.name] if !dead else item
+	print( ' Item_to_remove -> ' , Item_to_remove )
 	var Item_name = item.name if !dead else item.unique_id
+	print('DEAD ? ', dead )
 	var ItemClass = Item_to_remove.itemClass.to_lower()
 	Equipment_Data[BackPack.Back_Pack[Item_name].slot] = null #BackPack.Back_Pack[it.name].animation
+	BackPack.Back_Pack[Item_name].occupied_slot = null
+	
+	## Until here it's okay.
+	## Now we must to check SAVE LOAD functions
+	
 	if ItemClass == 'weapons' :
 		equiped_weapon.remove_at(0)# erase(Item_to_remove.unique_id)
 		Weapons.erase(Item_to_remove.unique_id)
 		Weapon = Weapons['Punch']
-		print('equiped_weapon -> ', equiped_weapon)
-		print('Weapons -> ', Weapons)
+		#print('equiped_weapon -> ', equiped_weapon)
+		#print('Weapons -> ', Weapons)
 		#print(Weapon)
 	
 	#match ItemClass :
