@@ -181,23 +181,15 @@ func consume_item(pos):
 						return
 							
 func release(cursor_pos):
-
-	print(get_container_under_cursor(cursor_pos))
 	if item_held == null:
 		return
 	var c = get_container_under_cursor(cursor_pos)
-	print(c.name)
 	if c == null :
 		return_item()
 		return
-	elif c.has_method("delete_item") :
+	if c.name == "Trash" :
 		print('FUERA!!!')
-		if c.delete_item(item_held) :
-			item_held = null
-			#return_item()
-			#drop_item()
-		else : 
-			return_item()
+		drop_item()
 	elif c.has_method("insert_item"):
 		if c.insert_item(item_held):
 			item_held = null
@@ -208,15 +200,15 @@ func release(cursor_pos):
 
 
 func get_container_under_cursor(cursor_pos):
-	var containers = [grid_bkpk, eq_slots, inv_base, BeltSlot1, BeltSlot2, BeltSlot3, BeltSlot4, Trash] #BeltSlot5]
+	var containers = [grid_bkpk, eq_slots, Trash, inv_base, BeltSlot1, BeltSlot2, BeltSlot3, BeltSlot4] #BeltSlot5]
 	for c in containers:
 		if c.get_global_rect().has_point(cursor_pos):
 			return c
 	return null
 
 func drop_item():
-	 # Item deleted
-	#item_held.queue_free()
+	# Podría poner una advertencia antes de accionar ... 
+	item_held.queue_free()
 	item_held = null
 	to_drop = false
 
