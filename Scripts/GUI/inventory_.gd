@@ -205,8 +205,15 @@ func get_container_under_cursor(cursor_pos):
 		if c.get_global_rect().has_point(cursor_pos):
 			return c
 	return null
+	
+func eliminate_equiped_items():
+	## aqui elimino un item de la lista de items de los items equipados (pero no del BackPack)
+	for eli_it in eq_slots.items :
+		item_held = eli_it
+		drop_item()
 
 func drop_item():
+	print(item_held)
 	# Podría poner una advertencia antes de accionar ... 
 	item_held.queue_free()
 	item_held = null
