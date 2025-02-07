@@ -104,6 +104,7 @@ static var alive = true
 static var state = "Normal" # Normal, Poisoned, trapped, Invulnerable
 # var performing = "idle" # Running, Jumping, Charging //  attacking
 # var moving = false
+static var dead_position
 
 static var Level = 1
 static var Next_level = Level + 1
@@ -294,7 +295,7 @@ static func update_stats() :
 	##update_stats()
 
 static func update_characteristics(equiped_item, add):
-	print('update_characteristics ', equiped_item)
+	## print('update_characteristics ', equiped_item)
 	for CH in equiped_item.affectations :
 		#print(str(CH) + ' # ' + str(equiped_item.affectations[CH]) )
 		chart_of_equipment_modificators[CH] = chart_of_equipment_modificators[CH] + equiped_item.affectations[CH] if add else chart_of_equipment_modificators[CH] - equiped_item.affectations[CH]
@@ -303,11 +304,11 @@ static func update_characteristics(equiped_item, add):
 static func wear_items(it):
 	print('wear_items')
 	Equiped_Items[it.name] = BackPack.Back_Pack[it.name]
-	print(Equiped_Items)
+	#print(Equiped_Items)
 	var Equiped_Item = BackPack.Back_Pack[it.name]
 	var ItemClass = Equiped_Item.itemClass.to_lower()
 	Equipment_Data[BackPack.Back_Pack[it.name].slot] = BackPack.Back_Pack[it.name].animation
-	print('-> ', ItemClass)
+	#print('-> ', ItemClass)
 	
 	match ItemClass :
 		'weapons' :
@@ -339,42 +340,34 @@ static func wear_items(it):
 	ANIM_EQUIPMENT_UPDATE = true
 
 static func remove_item(item, dead = false):
-	print('unwear item')
+	#print('Hero_data ->  unwear item ')
 
 	var Item_to_remove = BackPack.Back_Pack[item.name] if !dead else item
-	print( ' Item_to_remove -> ' , Item_to_remove )
 	var Item_name = item.name if !dead else item.unique_id
-	print('DEAD ? ', dead )
+	#print('DEAD ?  = ', dead )
 	var ItemClass = Item_to_remove.itemClass.to_lower()
+	#print('Equipment_Data -> to NULL -> ', Equipment_Data[BackPack.Back_Pack[Item_name].slot])	
 	Equipment_Data[BackPack.Back_Pack[Item_name].slot] = null #BackPack.Back_Pack[it.name].animation
+	#print('BackPack.Back_Pack[Item_name].occupied_slo -> to NULL = ', BackPack.Back_Pack[Item_name].occupied_slot)
 	BackPack.Back_Pack[Item_name].occupied_slot = null
 	
-	## Until here it's okay.
-	## Now we must to check SAVE LOAD functions
+	match ItemClass :
+		'weapons' :
+			equiped_weapon.remove_at(0)# erase(Item_to_remove.unique_id)
+			Weapons.erase(Item_to_remove.unique_id)
+			Weapon = Weapons['Punch']
+			#update_characteristics(Item_to_remove, false)
+		'armors' :
+			equiped_armor.erase(Item_to_remove.unique_id)
+			#equiped_armor[0] = Equiped_Item.unique_id
+			Ported_armor.erase(Item_to_remove.unique_id)
+			Ported_Armor = Ported_armor[equiped_armor[0]]
+			#print(Ported_Armor)
+		'amulets' :
+			pass
+		'implements' :
+			pass
 	
-	if ItemClass == 'weapons' :
-		equiped_weapon.remove_at(0)# erase(Item_to_remove.unique_id)
-		Weapons.erase(Item_to_remove.unique_id)
-		Weapon = Weapons['Punch']
-		#print('equiped_weapon -> ', equiped_weapon)
-		#print('Weapons -> ', Weapons)
-		#print(Weapon)
-	
-	#match ItemClass :
-		#'weapons' :
-			#
-			##update_characteristics(Item_to_remove, false)
-		#'armors' :
-			#pass
-			##equiped_armor.erase(Item_to_remove.unique_id)
-			###equiped_armor[0] = Equiped_Item.unique_id
-			##Ported_armor.erase(Item_to_remove.unique_id)
-			##Ported_Armor = Ported_armor[equiped_armor[0]]
-			##print(Ported_Armor)
-		#'amulets' :
-			#pass
-		#'implements' :
-			#pass
 	#if !dead :
 	update_characteristics(Item_to_remove, false)
 	ANIM_EQUIPMENT_UPDATE = true
@@ -469,6 +462,4 @@ static func drink_potion(potion) :
 		Invulnerable(potion)
 		
 		
-
-
 
