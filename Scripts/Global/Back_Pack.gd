@@ -10,7 +10,6 @@ var cinturon = {}
 var Important_Items = {}
 var new_item 
 
-
 var Treasure = {
 	'Coins': 0,
 	'Gems': 0,
@@ -23,13 +22,10 @@ var Treasure = {
 
 func add_to_bag(item):
 	#print('--------- ADD to BACG --- Back Pack')
-	#var new_item_name_key = item.name
-	#print(item)
 	var new_item_name_key = item.unique_id #if item.itemClass != 'potion' else item.name
 	Back_Pack[new_item_name_key] = item 
 	new_item = item
 	INVENTORY_UPDATED = true
-	hero_data.emptpy_poquets = false
 	
 func get_the_new_item(_new_itemm):
 	pass
@@ -39,3 +35,4 @@ func get_item(item_id) :
 		return Back_Pack[item_id]
 	else :
 		return Back_Pack["error"]
+
