@@ -198,6 +198,9 @@ func release(cursor_pos):
 	else:
 		return_item()
 
+#func get_container_position():
+#	var container = eq_slots.items
+#	return container
 
 func get_container_under_cursor(cursor_pos):
 	var containers = [grid_bkpk, eq_slots, Trash, inv_base, BeltSlot1, BeltSlot2, BeltSlot3, BeltSlot4] #BeltSlot5]
@@ -208,12 +211,16 @@ func get_container_under_cursor(cursor_pos):
 	
 func eliminate_equiped_items():
 	## aqui elimino un item de la lista de items de los items equipados (pero no del BackPack)
-	for eli_it in eq_slots.items :
-		item_held = eli_it
-		drop_item()
+	
+	print(eq_slots.items)
+	
+	##for eli_it in eq_slots.items :
+		##item_held = eli_it
+		##drop_item()
 
 func drop_item():
 	print(item_held)
+	print(BackPack.Back_Pack)
 	# Podría poner una advertencia antes de accionar ... 
 	item_held.queue_free()
 	item_held = null
@@ -234,7 +241,7 @@ func pickup_item(item_id):
 	item.set_meta('name', item_id)
 	if !is_reload :
 		add_child(item)
-		print(is_reload)
+		#print(is_reload)
 		BackPack.INVENTORY_UPDATED = false
 		if !grid_bkpk.insert_item_at_first_available_spot(item, is_reload):
 			# si no hay mas espacio disponible !!!!
@@ -260,3 +267,7 @@ func _on_inventory_button_pressed():
 
 func _on_stats_button_pressed():
 	print('STATS')
+
+
+func _on_close_btn_texture_button_up():
+	inventory_on = false
