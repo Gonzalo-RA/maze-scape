@@ -15,6 +15,8 @@ var items = { 	"WEAPON": null ,
 				"NECKLACE_2": null ,
 }
  
+@onready var returned_item = preload('res://Scenes/map_items/returned_item.tscn')
+
 func _ready():
 	pass
 	#for slot in slots:
@@ -23,16 +25,8 @@ func _ready():
 func _process(delta):
 
 	if BackPack.return_equiped_items_ :
-		print('equiped ---- retun item')
-		for it_to_del in items  :
-			if items[it_to_del] :
-				print(items[it_to_del])
-				var itd = items[it_to_del]
-				print(itd)
-				itd.queue_free()
-				items[it_to_del] = null
-				print(items[it_to_del])
-		BackPack.return_equiped_items_ = false
+		return_items()
+		
  
 func insert_item(item):
 	print('insert item // Equiped.gd')
@@ -151,3 +145,29 @@ func get_thing_under_pos(arr, pos):
 		if thing != null and thing.get_global_rect().has_point(pos):
 			return thing
 	return null
+func return_items():
+	print('equiped ---- retun item')
+	for it_to_del in items  :
+			if items[it_to_del] :
+				#for item in BackPack.Back_Pack :
+				var itd = items[it_to_del]
+				print('Hero.gd : 247 ', itd.name)
+				#print(BackPack.Back_Pack[itd.name])
+				
+				var rd_value = RandomNumberGenerator.new()
+				var the_thing = returned_item.instantiate()
+				#print(BackPack.Back_Pack[it_to_del])
+				the_thing.Data = BackPack.Back_Pack[itd.name]
+				the_thing.position = global_position
+				the_thing.position.x = global_position.x + randf_range(-10, 10)
+				the_thing.position.y = global_position.y + randf_range(-10, 10) 
+				get_tree().get_root().add_child(the_thing)
+				print('HELLO?')
+				
+				
+				print(itd)
+				itd.queue_free()
+				items[it_to_del] = null
+				print(items[it_to_del])
+				
+	BackPack.return_equiped_items_ = false			
