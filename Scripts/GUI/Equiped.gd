@@ -1,16 +1,44 @@
 extends Panel
  
 @onready var slots = get_children()
-var items = {}
+var items = { 	"WEAPON": null ,
+				"SHIELD": null ,
+				"CHEST": null ,
+				"HEAD": null ,
+				"RING_1": null ,
+				"RING_2": null ,
+				"GLOVES": null ,
+				"FETISH": null ,
+				"FEET": null ,
+				"BELT": null ,
+				"NECKLACE_1": null ,
+				"NECKLACE_2": null ,
+}
  
 func _ready():
-	for slot in slots:
-		items[slot.name] = null
+	pass
+	#for slot in slots:
+	#	items[slot.name] = null
+
+func _process(delta):
+
+	if BackPack.return_equiped_items_ :
+		print('equiped ---- retun item')
+		for it_to_del in items  :
+			if items[it_to_del] :
+				print(items[it_to_del])
+				var itd = items[it_to_del]
+				print(itd)
+				itd.queue_free()
+				items[it_to_del] = null
+				print(items[it_to_del])
+		BackPack.return_equiped_items_ = false
  
 func insert_item(item):
 	print('insert item // Equiped.gd')
 	var item_pos = item.global_position + item.size / 2
 	var slot = get_slot_under_pos(item_pos)
+	print ('ultima llamada -> Equiped.gd -> insert_item(item):')
 	if slot == null:
 		return false
 	var item_slot = BackPack.get_item(item.get_meta("id"))["slot"]
@@ -51,14 +79,14 @@ func _input(event):
 		elif event is InputEventMouseMotion:
 			print("Mouse Motion at: ", event.position)
 			Yoyo.global_position = event.position
-			print('YOYO P#osition : ', Yoyo.position )
+			#print('YOYO P#osition : ', Yoyo.position )
 
 func insert_item_after_load():
 	print('insert_item_after_load')
 	##for it in items :
 		##items[it] = null	
-	print(items)
-	print('-----------')
+	#print(items)
+	#print('-----------')
 	for item in items :
 		if items[item] != null :
 			 # [&"id", &"stackable", &"name", &"occupied_slot"]
@@ -75,9 +103,9 @@ func insert_item_after_load():
 							pass
 							
 					#print($"../Base_Grid".items.find([items[item]])) # [items[item]].get_texture()
-					print(items[item])
+					##print(items[item])
 					#$"../Base_Grid".remove_from_items(items[item])
-					print($"../Base_Grid".get_children())
+					##print($"../Base_Grid".get_children())
 					#print(BackPack.Back_Pack[items[item].name])
 					#print($"../Base_Grid".items)
 					## get_viewport().get_mouse_position()
