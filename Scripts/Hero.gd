@@ -191,36 +191,29 @@ func hurt_fx():
 	
 func dead():
 
-	anim_state.travel('Dead')
-	await get_tree().create_timer(3).timeout
-	print('DEAD')
-	hero_data.alive = false
-	
-	
-	#if !hero_data.emptpy_poquets :
-		#pass
-	
-	## !!!! Aquí hay un problema y es por eso que comenté return_items()
-	##
-	##return_items()
-	
-	return_items2()
-		##
-	hero_data.current_health = 0.1
-	current_state = states.MOVE
-	##hero_data.update_stats()
-	hero_data.current_health = hero_data.max_health
-	hero_data.current_energy = hero_data.max_energy
-	hero_data.XP = Aeternus.XP_LEVELS[str(hero_data.Level)]
-	
-	## Esto debiera usarlo en caso de tener vidas, pero no.
-	##hero_data.lives -= 1
-	#self.Initial_Position
-	
-	##get_tree().reload_current_scene()
-	
-	self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
-	#current_state = states.MOVE
+	if !returning_from_the_death :
+		
+		anim_state.travel('Dead')
+		print('DEAD')
+		hero_data.alive = false
+		
+		#if !hero_data.emptpy_poquets :
+			#pass
+		
+		## Esto debiera usarlo en caso de tener vidas, pero no.
+		##hero_data.lives -= 1
+		
+		returning_from_the_death = true
+		await get_tree().create_timer(4).timeout
+		return_items2()
+		hero_data.current_health = 0.1
+		##hero_data.update_stats()
+		hero_data.current_health = hero_data.max_health
+		hero_data.current_energy = hero_data.max_energy
+		hero_data.XP = Aeternus.XP_LEVELS[str(hero_data.Level)]
+		self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
+		current_state = states.MOVE
+		returning_from_the_death = false
 	
 	
 func return_items2():
