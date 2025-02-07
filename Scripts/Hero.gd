@@ -30,7 +30,7 @@ var is_returning_ = true
 
 ## STATS 
 
-enum states { MOVE, ATTACK, JUMP, CHARGE, RUN, BLOCK, DEAD, RELIVING }
+enum states { MOVE, ATTACK, JUMP, CHARGE, RUN, BLOCK, DEAD }
 var Level = hero_data.Level
 var XP = hero_data.XP
 var current_state = states.MOVE
@@ -77,8 +77,6 @@ func _physics_process(delta):
 			move()
 		states.DEAD :
 			dead()
-		states.RELIVING :
-			reliving()	
 			
 	if hero_data.XP >= Aeternus.XP_LEVELS[str(hero_data.Level + 1)] :
 		hero_data.level_up()
@@ -224,9 +222,6 @@ func dead():
 	self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
 	#current_state = states.MOVE
 	
-	
-func reliving():
-	pass	
 	
 func return_items2():
 	print('RETURN ITEMS 2')
