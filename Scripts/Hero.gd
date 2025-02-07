@@ -56,7 +56,6 @@ func _ready():
 	Initial_Position = global_position
 	Aeternus.get_HERO(self)
 	
-	
 func _physics_process(delta):
 	
 	if hero_data.TO_UPDATE :
@@ -190,23 +189,16 @@ func hurt_fx():
 	$Sprite2D.material.set_shader_parameter('flash_modifier', 0)
 	
 func dead():
-
+	
 	if !returning_from_the_death :
-		
+		hero_data.dead_position = position
 		anim_state.travel('Dead')
 		print('DEAD')
 		hero_data.alive = false
-		
-		#if !hero_data.emptpy_poquets :
-			#pass
-		
-		## Esto debiera usarlo en caso de tener vidas, pero no.
-		##hero_data.lives -= 1
-		
 		returning_from_the_death = true
+		return_items()
 		await get_tree().create_timer(4).timeout
-		return_items2()
-		hero_data.current_health = 0.1
+		## Esto debiera usarlo en caso de tener vidas, pero no aún.  ##hero_data.lives -= 1
 		##hero_data.update_stats()
 		hero_data.current_health = hero_data.max_health
 		hero_data.current_energy = hero_data.max_energy
@@ -214,70 +206,44 @@ func dead():
 		self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
 		current_state = states.MOVE
 		returning_from_the_death = false
-	
-	
-func return_items2():
-	print('RETURN ITEMS 2')
-	if !hero_data.alive :
-		BackPack.return_equiped_items()
-		for remove in hero_data.Equiped_Items :
-			hero_data.remove_item(hero_data.Equiped_Items[remove], true)
-		hero_data.Equiped_Items = {}
-			
-			## tomar los slots y tomar su posicion en el espacio (300, -250) por ejemplo
-			## con esta información podre acceder a 
-			## Equiped.get_item.under.position(position)
-		## print(hero_data.get_container_position())
-			## esto retornará un item, el que tiene la imagen y características. 
-			## Este se poderá eliminar. 
-		pass	
-
+		
 func return_items():
-	## ATENCIÓN AQUÍ ES DONDE SE GENERA EL ERROR DEL INVENTARIO!!!!!!
-	print('ATENCIÓN AQUÍ ES DONDE SE GENERA EL ERROR DEL INVENTARIO!!!!!!  func return_items(): en Hero.gd')
+	#print('RETURN ITEMS 2')
 	if !hero_data.alive :
-		
-		print('Hero.gd : 227 ', hero_data.Equiped_Items)
-		
-		for remove in hero_data.Equiped_Items :
+		## Esto elimina los items equipados
 
-			print('Hero.gd : 231 ', hero_data.Equiped_Items[remove])
-			
-			##  ME PREGUNTO SI hero_data.Equiped_Items[remove] NO ESTÁ
-			## ENTREGANDO EL OBJETO EN EL BUEN FORMATO O
-			## NO CONTIENE TODA LA INFORMACIÓN NECESARIA
-			## QUE LA SIGUEINTE FUNCIÓN hero_data.remove_item NECESITA
-			## PARA PROCESAR EL ITEM Y DEAR EL ESPACIO LIMPLIO
-			
+		equiped.delete_return_items()
+		#print('for hero_data.Equiped_Items -> remove')
+		for remove in hero_data.Equiped_Items :
 			hero_data.remove_item(hero_data.Equiped_Items[remove], true)
-		
 		hero_data.Equiped_Items = {}
 		
+		#print('Return to 0 each modification made by equiped equipement')
 		for to_zero in hero_data.chart_of_equipment_modificators :
 			hero_data.chart_of_equipment_modificators[to_zero] = 0
 		
-		for item in BackPack.Back_Pack :
-			print('Hero.gd : 247 ', item)
-			var rd_value = RandomNumberGenerator.new()
-			var the_thing = returned_item.instantiate()
-			the_thing.Data = BackPack.Back_Pack[item]
-			the_thing.position = global_position
-			the_thing.position.x = global_position.x + randf_range(-10, 10)
-			the_thing.position.y = global_position.y + randf_range(-10, 10) 
-			get_tree().get_root().add_child(the_thing)
-			print('HELLO?')
+		#print('Hero 234 : BackPack.Back_Pack -> ')
+		#print('Aquí revisamos la copia EQUIPED de Aeternus ')
+		for item in Aeternus.EQUIPED :
+			if Aeternus.EQUIPED[item] != null :
+				print(Aeternus.EQUIPED[item])
+				var rd_value = RandomNumberGenerator.new()
+				var the_thing = returned_item.instantiate()
+				the_thing.Data = BackPack.Back_Pack[Aeternus.EQUIPED[item].name]
+				the_thing.position =  position # hero_data.dead_position
+				the_thing.position.x = position.x + randf_range(-10, 10) # hero_data.dead_position.x + randf_range(-10, 10)
+				the_thing.position.y = position.y + randf_range(-10, 10) # hero_data.dead_position.y + randf_range(-10, 10) 
+				get_tree().get_root().add_child(the_thing)
 		
-		BackPack.Treasure['Coins'] -= floor(BackPack.Treasure['Coins'] / 2)
-		BackPack.Back_Pack = {}
+		var treasure_reduce_factor = 20 #100 - hero_data.Chance
+		var treasure_reduction = floor(BackPack.Treasure['Coins'] / 100) * 20 # treasure_reduce_factor
+		BackPack.Treasure['Coins'] -= (BackPack.Treasure['Coins'] - treasure_reduction)
 		
-		print('Hero.gd : 260 ', 'Important Items')
-		print(!BackPack.Important_Items.is_empty())
 		if !BackPack.Important_Items.is_empty():
 			for importantItem in BackPack.Important_Items :
 				BackPack.Back_Pack[importantItem] = BackPack.Important_Items[importantItem]
 			BackPack.Important_Items = {}	
-		
-		#hero_data.emptpy_poquets = true
+
 
 func anim_equipment_update ():
 	for path in hero_data.Equipment_Data :
