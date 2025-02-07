@@ -16,6 +16,6 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.name == 'Hero':
 		#print(ITEM)
-		if ITEM != null :
+		if ITEM != null and hero_data.alive :
 			BackPack.add_to_bag(ITEM) 
-		queue_free()	
+			queue_free()	
