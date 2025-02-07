@@ -26,11 +26,11 @@ extends CharacterBody2D
 
 var input_movement =  Vector2.ZERO
 var Initial_Position
-
+var is_returning_ = true
 
 ## STATS 
 
-enum states { MOVE, ATTACK, JUMP, CHARGE, RUN, BLOCK, DEAD }
+enum states { MOVE, ATTACK, JUMP, CHARGE, RUN, BLOCK, DEAD, RELIVING }
 var Level = hero_data.Level
 var XP = hero_data.XP
 var current_state = states.MOVE
@@ -77,6 +77,8 @@ func _physics_process(delta):
 			move()
 		states.DEAD :
 			dead()
+		states.RELIVING :
+			reliving()	
 			
 	if hero_data.XP >= Aeternus.XP_LEVELS[str(hero_data.Level + 1)] :
 		hero_data.level_up()
@@ -192,18 +194,21 @@ func hurt_fx():
 func dead():
 
 	anim_state.travel('Dead')
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	print('DEAD')
 	hero_data.alive = false
+	
 	
 	#if !hero_data.emptpy_poquets :
 		#pass
 	
 	## !!!! Aquí hay un problema y es por eso que comenté return_items()
 	##
-	return_items()
-	##
+	##return_items()
 	
+	return_items2()
+		##
+	hero_data.current_health = 0.1
 	current_state = states.MOVE
 	##hero_data.update_stats()
 	hero_data.current_health = hero_data.max_health
@@ -217,7 +222,27 @@ func dead():
 	##get_tree().reload_current_scene()
 	
 	self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
+	#current_state = states.MOVE
 	
+	
+func reliving():
+	pass	
+	
+func return_items2():
+	print('RETURN ITEMS 2')
+	if !hero_data.alive :
+		BackPack.return_equiped_items()
+		for remove in hero_data.Equiped_Items :
+			hero_data.remove_item(hero_data.Equiped_Items[remove], true)
+		hero_data.Equiped_Items = {}
+			
+			## tomar los slots y tomar su posicion en el espacio (300, -250) por ejemplo
+			## con esta información podre acceder a 
+			## Equiped.get_item.under.position(position)
+		## print(hero_data.get_container_position())
+			## esto retornará un item, el que tiene la imagen y características. 
+			## Este se poderá eliminar. 
+		pass	
 
 func return_items():
 	## ATENCIÓN AQUÍ ES DONDE SE GENERA EL ERROR DEL INVENTARIO!!!!!!
@@ -296,7 +321,7 @@ func anim_equipment_update ():
 				'SHIELD' :	
 					shield_back_animation.texture = load(necked_spritesheet_path)	
 					shield_front_animation.texture = load(necked_spritesheet_path)
-				'BOOTS':
+				'FEET':
 					boots_animation.texture = load(necked_spritesheet_path)
 				'GLOVES' : 
 					gloves_animation.texture = load(necked_spritesheet_path)
