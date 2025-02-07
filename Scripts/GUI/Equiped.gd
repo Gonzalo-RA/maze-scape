@@ -1,7 +1,9 @@
 extends Panel
+class_name equiped
  
 @onready var slots = get_children()
-var items = { 	"WEAPON": null ,
+static var items = { 
+				"WEAPON": null ,
 				"SHIELD": null ,
 				"CHEST": null ,
 				"HEAD": null ,
@@ -19,14 +21,6 @@ var items = { 	"WEAPON": null ,
 
 func _ready():
 	pass
-	#for slot in slots:
-	#	items[slot.name] = null
-
-func _process(delta):
-
-	if BackPack.return_equiped_items_ :
-		return_items()
-		
  
 func insert_item(item):
 	print('insert item // Equiped.gd')
@@ -60,6 +54,7 @@ func insert_item(item):
 	items[slot.name] = item
 	item.global_position = slot.global_position + slot.size / 2 - item.size / 2
 	hero_data.wear_items(item)
+	#Aeternus.EQUIPED = items
 	return true
 
 
@@ -145,29 +140,16 @@ func get_thing_under_pos(arr, pos):
 		if thing != null and thing.get_global_rect().has_point(pos):
 			return thing
 	return null
-func return_items():
-	print('equiped ---- retun item')
+	
+static func delete_return_items():
+	#print('equiped ---- retun item')
+	#print('CLONAR  "items" en AETERNUS ')	
 	for it_to_del in items  :
 			if items[it_to_del] :
-				#for item in BackPack.Back_Pack :
+				var clon = items[it_to_del].duplicate() 
+				Aeternus.EQUIPED[it_to_del] = clon
+				#print('fue clonado y copiado a Aeternus.EQUIPED -> ', clon)
+				#print('aqui se eliminan los ítmens originales de Equiped')
 				var itd = items[it_to_del]
-				print('Hero.gd : 247 ', itd.name)
-				#print(BackPack.Back_Pack[itd.name])
-				
-				var rd_value = RandomNumberGenerator.new()
-				var the_thing = returned_item.instantiate()
-				#print(BackPack.Back_Pack[it_to_del])
-				the_thing.Data = BackPack.Back_Pack[itd.name]
-				the_thing.position = global_position
-				the_thing.position.x = global_position.x + randf_range(-10, 10)
-				the_thing.position.y = global_position.y + randf_range(-10, 10) 
-				get_tree().get_root().add_child(the_thing)
-				print('HELLO?')
-				
-				
-				print(itd)
 				itd.queue_free()
 				items[it_to_del] = null
-				print(items[it_to_del])
-				
-	BackPack.return_equiped_items_ = false			
