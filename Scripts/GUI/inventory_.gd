@@ -15,7 +15,6 @@ const item_base = preload("res://Scenes/UI/item_base.tscn")
 
 @onready var Item_info = $Item_Info
 
-
 var item_held = null
 var item_offset = Vector2()
 var last_container = null
@@ -198,10 +197,6 @@ func release(cursor_pos):
 	else:
 		return_item()
 
-#func get_container_position():
-#	var container = eq_slots.items
-#	return container
-
 func get_container_under_cursor(cursor_pos):
 	var containers = [grid_bkpk, eq_slots, Trash, inv_base, BeltSlot1, BeltSlot2, BeltSlot3, BeltSlot4] #BeltSlot5]
 	for c in containers:
@@ -209,18 +204,9 @@ func get_container_under_cursor(cursor_pos):
 			return c
 	return null
 	
-func eliminate_equiped_items():
-	## aqui elimino un item de la lista de items de los items equipados (pero no del BackPack)
-	
-	print(eq_slots.items)
-	
-	##for eli_it in eq_slots.items :
-		##item_held = eli_it
-		##drop_item()
 
-func drop_item():
-	print(item_held)
-	print(BackPack.Back_Pack)
+func drop_item(): 
+	print('item eliminado -> ' , item_held)
 	# Podría poner una advertencia antes de accionar ... 
 	item_held.queue_free()
 	item_held = null
@@ -232,7 +218,7 @@ func return_item():
 	item_held = null
  
 func pickup_item(item_id):
-	print('inventory_.gd : 218 -> pickup item : item_id : ' + item_id)
+	print('inventory_.gd : 235 -> pickup item : item_id : ' + item_id)
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(BackPack.Back_Pack[item_id]['icon_inventary']) 
@@ -240,11 +226,11 @@ func pickup_item(item_id):
 	item.set_meta('stackable', BackPack.Back_Pack[item_id]['stackable'])
 	item.set_meta('name', item_id)
 	if !is_reload :
+		print('no es reload')
 		add_child(item)
 		#print(is_reload)
 		BackPack.INVENTORY_UPDATED = false
 		if !grid_bkpk.insert_item_at_first_available_spot(item, is_reload):
-			# si no hay mas espacio disponible !!!!
 			print('NO HAY MAS ESPACIO DISPONIBLE!!!!!')
 			item.queue_free()
 			return false
@@ -267,7 +253,6 @@ func _on_inventory_button_pressed():
 
 func _on_stats_button_pressed():
 	print('STATS')
-
 
 func _on_close_btn_texture_button_up():
 	inventory_on = false
