@@ -26,7 +26,7 @@ extends CharacterBody2D
 
 var input_movement =  Vector2.ZERO
 var Initial_Position
-var is_returning_ = true
+var returning_from_the_death = false
 
 ## STATS 
 
