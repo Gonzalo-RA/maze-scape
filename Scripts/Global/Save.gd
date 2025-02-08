@@ -163,13 +163,13 @@ func load_data(Inventory, Equiped) :
 		BackPack.Treasure = load_file.get_var()
 		
 		print('INVENTORY EN LOAD // Save.gd') 
-		Equiped.items = load_file.get_var(true)
-		print(Equiped.items)
+		#Equiped.items = load_file.get_var(true)
+		#print(Equiped.items)
 		#INVENTORY = load_file.get_var()
 		#print(INVENTORY)
-		Inventory.get_items_in_BackPack()
+		#Inventory.get_items_in_BackPack()
 		#print(BackPack.Back_Pack)
-		Equiped.insert_item_after_load()
+		#Equiped.insert_item_after_load()
 		
 		print('end LOAD // Save.gd' )
 		
