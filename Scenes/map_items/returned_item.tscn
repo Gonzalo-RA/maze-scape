@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/map_items/returned_item.gd" id="1_pkk7b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mshwb"]
-radius = 13.0384
+radius = 4.0
 
 [node name="Returned_Item" type="Area2D"]
 script = ExtResource("1_pkk7b")

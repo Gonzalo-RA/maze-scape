@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://bqv54e7y1x2k4"]
+[gd_scene load_steps=31 format=3 uid="uid://bqv54e7y1x2k4"]
 
-[ext_resource type="Texture2D" uid="uid://7gghgay3tggt" path="res://Assets/Images/GUI/Inventory.png" id="1_5m0hm"]
+[ext_resource type="Texture2D" uid="uid://bj8sgy11xm6ns" path="res://Assets/Images/GUI/Inventory.png" id="1_5m0hm"]
 [ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="1_fsyni"]
 [ext_resource type="Script" path="res://Scripts/GUI/inventory_.gd" id="1_yqtla"]
 [ext_resource type="Script" path="res://Scripts/GUI/Equiped.gd" id="3_8d6rt"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/GUI/BeltSlot_2.gd" id="5_v4p7q"]
 [ext_resource type="Script" path="res://Scripts/GUI/BeltSlot_3.gd" id="6_pslms"]
 [ext_resource type="Script" path="res://Scripts/GUI/BeltSlot_4.gd" id="7_rtr2n"]
+[ext_resource type="Texture2D" uid="uid://bfjnvaqe82gr2" path="res://Assets/Images/GUI/button_open_close_h.png" id="10_0y7ug"]
+[ext_resource type="Texture2D" uid="uid://kn1p1qdps64g" path="res://Assets/Images/GUI/button_open_close_p.png" id="11_pc35v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4nax"]
 
@@ -44,6 +46,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_id666"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c5qxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dydat"]
+
 [node name="Inventory_" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -65,19 +71,19 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_y4nax")
 
 [node name="Base_Grid" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -80.0
+offset_left = -54.0
 offset_top = -14.0
-offset_right = 80.0
+offset_right = 86.0
 offset_bottom = 86.0
 stretch_mode = 2
 script = ExtResource("3_t4cox")
 
 [node name="Equiped" type="Panel" parent="."]
 layout_mode = 0
-offset_left = -80.0
-offset_top = -83.5
-offset_right = 20.0
-offset_bottom = -23.5
+offset_left = -14.0
+offset_top = -82.5
+offset_right = 86.0
+offset_bottom = -22.5
 theme_override_styles/panel = SubResource("StyleBoxEmpty_57cyi")
 script = ExtResource("3_8d6rt")
 
@@ -230,11 +236,25 @@ offset_right = 20.0
 offset_bottom = 20.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_id666")
 
+[node name="Trash" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -82.0
+offset_top = 39.0
+offset_right = -66.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c5qxn")
+
+[node name="Basurero" type="Panel" parent="Trash"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dydat")
+
 [node name="Item_Info" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 25.0
+offset_left = -83.0
 offset_top = -83.0
-offset_right = 160.0
+offset_right = 67.0
 offset_bottom = 65.0
 scale = Vector2(0.4, 0.4)
 expand_mode = 1
@@ -242,20 +262,36 @@ expand_mode = 1
 [node name="Item_Name" type="Label" parent="Item_Info"]
 layout_mode = 0
 offset_top = 3.0
-offset_right = 135.0
+offset_right = 146.0
 offset_bottom = 60.0
 autowrap_mode = 3
 
 [node name="Rarity" type="Label" parent="Item_Info"]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 2.0
 offset_top = 63.0
-offset_right = 133.0
+offset_right = 145.0
 offset_bottom = 85.0
 
 [node name="Attribute_1" type="Label" parent="Item_Info"]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 2.0
 offset_top = 85.0
-offset_right = 135.0
+offset_right = 145.0
 offset_bottom = 147.0
+
+[node name="Close_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = -84.0
+offset_top = 75.0
+offset_right = -73.0
+offset_bottom = 86.0
+
+[node name="Close_btn_texture" type="TextureButton" parent="Close_btn"]
+layout_mode = 0
+offset_right = 11.0
+offset_bottom = 11.0
+texture_normal = ExtResource("10_0y7ug")
+texture_pressed = ExtResource("11_pc35v")
+
+[connection signal="button_up" from="Close_btn/Close_btn_texture" to="." method="_on_close_btn_texture_button_up"]

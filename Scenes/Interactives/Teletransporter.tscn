@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://7ptckhd8hqwx"]
+
+[ext_resource type="Script" path="res://Scripts/map_items/Teletransporter.gd" id="1_6qn1h"]
+[ext_resource type="Texture2D" uid="uid://bmvrstnkb2qr6" path="res://Assets/Images/Background/maps-assets.png" id="1_wnoi3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70o1x"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_tvdkd"]
+resource_name = "Being"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite_A:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(8, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_kada3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite_A:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(6, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hihg8"]
+_data = {
+"Being": SubResource("Animation_tvdkd"),
+"RESET": SubResource("Animation_kada3")
+}
+
+[node name="Teletransporter" type="Node2D"]
+z_index = -1
+script = ExtResource("1_6qn1h")
+
+[node name="Space_A" type="Area2D" parent="."]
+
+[node name="Sprite_A" type="Sprite2D" parent="Space_A"]
+texture = ExtResource("1_wnoi3")
+hframes = 19
+vframes = 9
+frame = 120
+
+[node name="HB_Space_A" type="CollisionShape2D" parent="Space_A"]
+shape = SubResource("RectangleShape2D_70o1x")
+
+[node name="Teletransporter_animation" type="AnimationPlayer" parent="Space_A"]
+libraries = {
+"": SubResource("AnimationLibrary_hihg8")
+}
+autoplay = "Being"
+
+[connection signal="body_entered" from="Space_A" to="." method="_on_space_a_body_entered"]
+[connection signal="body_exited" from="Space_A" to="." method="_on_space_a_body_exited"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://0ba7hxy75dpw"]
 
 [ext_resource type="Script" path="res://Scripts/map_items/traps.gd" id="1_3s6cf"]
-[ext_resource type="Texture2D" uid="uid://dssadq1apqrur" path="res://Assets/Images/Background/maps-assets.png" id="1_c6dba"]
+[ext_resource type="Texture2D" uid="uid://bmvrstnkb2qr6" path="res://Assets/Images/Background/maps-assets.png" id="1_c6dba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgm5c"]
 size = Vector2(6, 6)

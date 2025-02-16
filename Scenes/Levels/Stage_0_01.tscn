@@ -1,59 +1,23 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2owdlpis53pk"]
+[gd_scene load_steps=10 format=3 uid="uid://cu5v05hqcbn8k"]
 
-[ext_resource type="PackedScene" uid="uid://cq6ni4ty75022" path="res://Scenes/hero.tscn" id="1_frcie"]
-[ext_resource type="PackedScene" uid="uid://cqsqyq1wa6bk" path="res://Scenes/Interactives/Crate.tscn" id="2_jr6ep"]
-[ext_resource type="Script" path="res://Scripts/Camera.gd" id="2_jxwl5"]
-[ext_resource type="TileSet" uid="uid://df2lg2xsr51r3" path="res://Assets/Images/Background/main_map.tres" id="3_pv5uw"]
-[ext_resource type="Script" path="res://Scripts/Camera_paning.gd" id="5_1xkxl"]
-[ext_resource type="PackedScene" uid="uid://0ba7hxy75dpw" path="res://Scenes/map_items/traps.tscn" id="5_8hwa3"]
-[ext_resource type="Script" path="res://Scripts/Map/Ground.gd" id="5_rqn83"]
-[ext_resource type="PackedScene" uid="uid://dsmqogx1njr83" path="res://Scenes/map_items/loot_items.tscn" id="7_j0dli"]
-[ext_resource type="PackedScene" uid="uid://d24aht5nw6hd3" path="res://Scenes/UI/gui.tscn" id="7_riumo"]
-[ext_resource type="PackedScene" uid="uid://dgbvlcmhh4ybx" path="res://Scenes/PNJ/Enemies/NonDeads/enemy_basic_agresive.tscn" id="8_uvmma"]
-[ext_resource type="PackedScene" uid="uid://7ptckhd8hqwx" path="res://Scenes/Interactives/Teletransporter.tscn" id="9_3q8q0"]
-[ext_resource type="Script" path="res://Scripts/GUI/Welcome_window.gd" id="12_a24to"]
-[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="12_jvdle"]
+[ext_resource type="Script" path="res://Scripts/Map/Stage_0_01.gd" id="1_3kdwe"]
+[ext_resource type="TileSet" uid="uid://df2lg2xsr51r3" path="res://Assets/Images/Background/main_map.tres" id="2_o0xo1"]
+[ext_resource type="Script" path="res://Scripts/Map/Ground.gd" id="3_om87i"]
+[ext_resource type="PackedScene" uid="uid://cqsqyq1wa6bk" path="res://Scenes/Interactives/Crate.tscn" id="4_ilcqj"]
+[ext_resource type="PackedScene" uid="uid://0ba7hxy75dpw" path="res://Scenes/map_items/traps.tscn" id="5_2ah16"]
+[ext_resource type="PackedScene" uid="uid://dgbvlcmhh4ybx" path="res://Scenes/PNJ/Enemies/NonDeads/enemy_basic_agresive.tscn" id="6_kdrdu"]
+[ext_resource type="PackedScene" uid="uid://dsmqogx1njr83" path="res://Scenes/map_items/loot_items.tscn" id="7_e4s7n"]
+[ext_resource type="PackedScene" uid="uid://7ptckhd8hqwx" path="res://Scenes/Interactives/Teletransporter.tscn" id="8_nrfcf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g481r"]
-size = Vector2(6.5, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4bej"]
+size = Vector2(10, 10)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhxem"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pv7c"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tudn"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p7a5"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df0ey"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4vko"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[node name="main_map" type="Node2D"]
-y_sort_enabled = true
-
-[node name="Hero" parent="." groups=["Pausable"] instance=ExtResource("1_frcie")]
-position = Vector2(197, 113)
-
-[node name="Camera_follow" type="Camera2D" parent="." node_paths=PackedStringArray("player", "map")]
-ignore_rotation = false
-zoom = Vector2(4, 4)
-limit_left = 0
-limit_top = 0
-script = ExtResource("2_jxwl5")
-player = NodePath("../Hero")
-map = NodePath("../Ground")
+[node name="Stage_0_01" type="Node2D"]
+script = ExtResource("1_3kdwe")
 
 [node name="Ground" type="TileMap" parent="." groups=["Maps", "Pausable"]]
-visible = false
 y_sort_enabled = true
-tile_set = ExtResource("3_pv5uw")
+tile_set = ExtResource("2_o0xo1")
 rendering_quadrant_size = 8
 format = 2
 layer_0/name = "Ground"
@@ -70,208 +34,142 @@ layer_3/name = "Over walls"
 layer_3/y_sort_enabled = true
 layer_3/z_index = 8
 layer_3/tile_data = PackedInt32Array(589859, 786432, 0, 589860, 786432, 0, 589861, 786432, 0, 786467, 786432, 0, 786466, 786432, 0, 786465, 786432, 0, 262178, 786432, 0, 589858, 786432, 0, 852001, 786432, 0, 1441810, 1179648, 1, 1441811, 1179648, 1, 1441812, 1179648, 1, 1441813, 1179648, 1, 1441814, 1179648, 1, 1441815, 1179648, 1, 1441816, 1179648, 1, 1441817, 1179648, 1, 1441818, 1179648, 1, 1441819, 1179648, 1, 655384, 1179648, 1, 655383, 1179648, 1, 655382, 1179648, 1, 720918, 1179648, 1, 786454, 1179648, 1, 786453, 1179648, 1, 786452, 1179648, 1, 786451, 1179648, 1, 851987, 1179648, 1, 917523, 1179648, 1, 917522, 1179648, 1, 917521, 1179648, 1, 917520, 1179648, 1, 720912, 1179648, 1, 720911, 1179648, 1, 720910, 1179648, 1, 720909, 1179648, 1, 786445, 1179648, 1, 851981, 1179648, 1, 917517, 1179648, 1, 983053, 1179648, 1, 983052, 1179648, 1, 1048588, 1179648, 1, 1048589, 1179648, 1, 1048590, 1179648, 1, 1048591, 1179648, 1, 1048592, 1179648, 1, 1114128, 1179648, 1, 1179664, 1179648, 1, 1245200, 1179648, 1, 1245201, 1179648, 1, 1245202, 1179648, 1, 1310733, 1179648, 1, 1376269, 1179648, 1, 1441805, 1179648, 1, 1441804, 1179648, 1, 1441803, 1179648, 1, 1441802, 1179648, 1, 1441801, 1179648, 1, 1441800, 1179648, 1, 1048597, 1179648, 1, 1048598, 1179648, 1, 983062, 1179648, 1, 983063, 1179648, 1, 983064, 1179648, 1, 983065, 1179648, 1, 983066, 1179648, 1, 983067, 1179648, 1, 917531, 1179648, 1, 851995, 1179648, 1, 786459, 1179648, 1, 720923, 1179648, 1, 655387, 1179648, 1, 589851, 1179648, 1, 524315, 1179648, 1, 524314, 1179648, 1, 524313, 1179648, 1, 458777, 1179648, 1, 393241, 1179648, 1, 327705, 1179648, 1, 327706, 1179648, 1, 327707, 1179648, 1, 327708, 1179648, 1, 327709, 1179648, 1, 327710, 1179648, 1, 327711, 1179648, 1, 524319, 1179648, 1, 589855, 1179648, 1, 589854, 1179648, 1, 589853, 1179648, 1, 655389, 1179648, 1, 720925, 1179648, 1, 786461, 1179648, 1, 851997, 1179648, 1, 917533, 1179648, 1, 983069, 1179648, 1, 983070, 1179648, 1, 1048606, 1179648, 1, 1114142, 1179648, 1, 1114141, 1179648, 1, 1114140, 1179648, 1, 1114139, 1179648, 1, 1114138, 1179648, 1, 1114137, 1179648, 1, 1114136, 1179648, 1, 1179672, 1179648, 1, 1245208, 1179648, 1, 1245207, 1179648, 1, 1245206, 1179648, 1, 1245205, 1179648, 1, 589844, 1179648, 1, 589843, 1179648, 1, 589842, 1179648, 1, 589841, 1179648, 1, 524305, 1179648, 1, 458769, 1179648, 1, 393233, 1179648, 1, 327697, 1179648, 1, 327696, 1179648, 1, 327695, 1179648, 1, 458771, 1179648, 1, 393235, 1179648, 1, 327699, 1179648, 1, 327700, 1179648, 1, 262164, 1179648, 1, 196628, 1179648, 1, 196629, 1179648, 1, 196630, 1179648, 1, 131096, 1179648, 1, 131097, 1179648, 1, 131098, 1179648, 1, 131099, 1179648, 1, 131100, 1179648, 1, 131101, 1179648, 1, 196632, 1179648, 1, 196631, 1179648, 1, 589852, 1179648, 1, 1114133, 1179648, 1, 1179669, 1179648, 1, 1114121, 983040, 0, 1114120, 983040, 0, 1114119, 983040, 0, 1114118, 983040, 0, 1114117, 983040, 0, 1114116, 983040, 0, 1114115, 983040, 0, 1048579, 983040, 0, 983043, 983040, 0, 917507, 983040, 0, 393218, 983040, 0, 393219, 983040, 0, 393220, 983040, 0, 393221, 983040, 0, 327685, 983040, 0, 262149, 983040, 0, 131077, 983040, 0, 131076, 983040, 0, 131075, 983040, 0, 65539, 983040, 0, 3, 983040, 0, -65533, 983040, 0, -65525, 983040, 0, 11, 983040, 0, 65547, 983040, 0, 131083, 983040, 0, 131084, 983040, 0, 131085, 983040, 0, 131086, 983040, 0, 196621, 983040, 0, 262157, 983040, 0, 327693, 983040, 0, 327692, 983040, 0, 327691, 983040, 0, 393227, 983040, 0, 65544, 983040, 0, 131080, 983040, 0, 196616, 983040, 0, 262152, 983040, 0, 262151, 983040, 0, 327687, 983040, 0, 393223, 983040, 0, 458759, 983040, 0, 524295, 983040, 0, 589831, 983040, 0, 655367, 983040, 0, 720903, 983040, 0, 786439, 983040, 0, 851975, 983040, 0, 720902, 983040, 0, 720901, 983040, 0, 720900, 983040, 0, 458756, 983040, 0, 524292, 983040, 0, 589828, 983040, 0, 524296, 983040, 0, 524297, 983040, 0, 524298, 983040, 0, 524299, 983040, 0, 524300, 983040, 0, 589834, 983040, 0, 655370, 983040, 0, 720906, 983040, 0, 589825, 983040, 0, 655361, 983040, 0, 720897, 983040, 0, 720896, 983040, 0, 655360, 983040, 0, 589824, 983040, 0, 524288, 983040, 0, 458752, 983040, 0, 65536, 983040, 0, 131072, 983040, 0, 196608, 983040, 0, 262144, 983040, 0, 327680, 983040, 0, 1376259, 983040, 0, 1310723, 983040, 0, 1310724, 983040, 0, 1310725, 983040, 0, 1310726, 983040, 0, 1310727, 983040, 0, 1310728, 983040, 0, 1310729, 983040, 0, 1310746, 1179648, 1, 1310747, 1179648, 1, 1310748, 1179648, 1, 1310749, 1179648, 1, 1310750, 1179648, 1, 1376286, 1179648, 1, 1441822, 1179648, 1, 917537, 786432, 0, 983073, 786432, 0, 327714, 786432, 0, 393250, 786432, 0, 458786, 786432, 0, 524322, 786432, 0, 655397, 786432, 0, 720933, 786432, 0, 786469, 786432, 0, 852005, 786432, 0, 917541, 786432, 0, 327698, 1179648, 1, 458763, 983040, 0, 655401, 1179648, 1, 720937, 1179648, 1, 786473, 1179648, 1, 589865, 1179648, 1, 852009, 1179648, 1, 917545, 1179648, 1, 983081, 1179648, 1, 983082, 1179648, 1, 983083, 1179648, 1, 983084, 1179648, 1, 983085, 1179648, 1, 983086, 1179648, 1, 1179666, 1179648, 1, 1114130, 1179648, 1, 1114131, 1179648, 1, 1114132, 1179648, 1, 1310734, 1179648, 1, 65550, 983040, 0)
-script = ExtResource("5_rqn83")
+script = ExtResource("3_om87i")
 
-[node name="Crate" parent="Ground" instance=ExtResource("2_jr6ep")]
+[node name="Crate" parent="Ground" instance=ExtResource("4_ilcqj")]
 position = Vector2(224, 58)
 
-[node name="Traps" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(305, 34)
 
-[node name="Traps18" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps18" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(299, 37)
 
-[node name="Traps2" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps2" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(305, 47)
 
-[node name="Traps3" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps3" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(345, 39)
 
-[node name="Traps20" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps20" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(350, 49)
 
-[node name="Traps21" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps21" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(350, 42)
 
-[node name="Traps22" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps22" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(180, 116)
 Trap_type = 2
 
-[node name="Traps51" parent="Ground" instance=ExtResource("5_8hwa3")]
+[node name="Traps51" parent="Ground" instance=ExtResource("5_2ah16")]
 z_index = -1
 position = Vector2(348, 27)
 
-[node name="Skeleton 02" parent="Ground" instance=ExtResource("8_uvmma")]
+[node name="Skeleton 02" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(261, 157)
 Type_of_PNJ = 1
 Monster_list = 3
 
-[node name="Skeleton 03" parent="Ground" instance=ExtResource("8_uvmma")]
+[node name="Skeleton 03" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(118, 68)
 Type_of_PNJ = 1
 Monster_list = 3
 
-[node name="Skeleton 04" parent="Ground" instance=ExtResource("8_uvmma")]
+[node name="Skeleton 04" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(90, 153)
 Type_of_PNJ = 1
 Monster_list = 3
 
-[node name="Skeleton 05" parent="Ground" instance=ExtResource("8_uvmma")]
+[node name="Skeleton 05" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(261, 28)
 Type_of_PNJ = 1
 Monster_list = 3
 
-[node name="Lot_items" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(208, 106)
 Loot_Category = 5
 
-[node name="Lot_items3" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items3" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(191, 102)
 Loot_Category = 2
 Potion = 1
 
-[node name="Lot_items4" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items4" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(186, 71)
 Loot_Category = 2
 Potion = 3
 
-[node name="Lot_items2" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items2" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(206, 92)
 Loot_Category = 3
 Armor = 5
 
-[node name="Lot_items7" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items7" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(212, 83)
 Loot_Category = 5
 instance_ID = 99999990
 Implement = 1
 
-[node name="Lot_items8" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items8" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(165, 62)
 Loot_Category = 2
 Potion = 3
 
-[node name="Lot_items5" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items5" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(192, 50)
 Loot_Category = 4
 Weapon = 4
 
-[node name="Lot_items9" parent="Ground" instance=ExtResource("7_j0dli")]
-position = Vector2(192, 50)
+[node name="Lot_items9" parent="Ground" instance=ExtResource("7_e4s7n")]
+position = Vector2(193, 62)
 Loot_Category = 4
 Weapon = 4
 
-[node name="Lot_items6" parent="Ground" instance=ExtResource("7_j0dli")]
+[node name="Lot_items6" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(178, 50)
 Loot_Category = 5
 Implement = 2
 
-[node name="Teletransporter" parent="Ground" instance=ExtResource("9_3q8q0")]
+[node name="Teletransporter" parent="Ground" instance=ExtResource("8_nrfcf")]
 position = Vector2(28, 189)
 
-[node name="Teletransporter2" parent="Ground" instance=ExtResource("9_3q8q0")]
+[node name="Teletransporter2" parent="Ground" instance=ExtResource("8_nrfcf")]
 position = Vector2(212, 121)
 
-[node name="Teletransporter3" parent="Ground" instance=ExtResource("9_3q8q0")]
+[node name="Teletransporter3" parent="Ground" instance=ExtResource("8_nrfcf")]
 position = Vector2(118, 82)
 Portal_number = 99
 Usage = 1
 
-[node name="Teletransporter4" parent="Ground" instance=ExtResource("9_3q8q0")]
+[node name="Teletransporter4" parent="Ground" instance=ExtResource("8_nrfcf")]
 position = Vector2(262, 60)
 Portal_number = 99
 Usage = 1
 
-[node name="Srtart_Area" type="Area2D" parent="Ground"]
+[node name="Start_Area" type="Area2D" parent="."]
+position = Vector2(15, 27)
 
-[node name="Start_Point" type="CollisionShape2D" parent="Ground/Srtart_Area"]
-position = Vector2(14, 13)
-shape = SubResource("RectangleShape2D_g481r")
+[node name="start_point" type="CollisionShape2D" parent="Start_Area"]
+shape = SubResource("RectangleShape2D_b4bej")
 
-[node name="Leave_Area_01" type="Area2D" parent="Ground"]
+[node name="Leaving_Area_00" type="Area2D" parent="."]
+position = Vector2(380, 131)
 
-[node name="Leave_Point" type="CollisionShape2D" parent="Ground/Leave_Area_01"]
-position = Vector2(-3, 187)
-shape = SubResource("RectangleShape2D_g481r")
+[node name="leaving_point" type="CollisionShape2D" parent="Leaving_Area_00"]
+shape = SubResource("RectangleShape2D_b4bej")
 
-[node name="Leave_Area_02" type="Area2D" parent="Ground"]
+[node name="Leaving_Area_01" type="Area2D" parent="."]
+position = Vector2(378, 185)
 
-[node name="Leave_Point" type="CollisionShape2D" parent="Ground/Leave_Area_02"]
-position = Vector2(101, 12)
-shape = SubResource("RectangleShape2D_g481r")
+[node name="leaving_point" type="CollisionShape2D" parent="Leaving_Area_01"]
+shape = SubResource("RectangleShape2D_b4bej")
 
-[node name="Camera_paning" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-enabled = false
-zoom = Vector2(4, 4)
-limit_left = 0
-limit_top = 0
-script = ExtResource("5_1xkxl")
-player = NodePath("../Hero")
-
-[node name="GUI" parent="." instance=ExtResource("7_riumo")]
-
-[node name="Welcome_window" type="CanvasLayer" parent="."]
-process_mode = 2
-script = ExtResource("12_a24to")
-
-[node name="Welcome_Background" type="ColorRect" parent="Welcome_window"]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.333333, 0.333333, 0.333333, 1)
-
-[node name="Welcome_Control" type="Control" parent="Welcome_window"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 368.0
-offset_top = 382.0
-offset_right = 768.0
-offset_bottom = 542.0
-
-[node name="Start_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 3.0
-offset_right = 250.0
-offset_bottom = 33.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mhxem")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1pv7c")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2tudn")
-text = "New Game"
-
-[node name="Welcome_Load_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 53.0
-offset_right = 250.0
-offset_bottom = 83.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
-text = "Load Game"
-
-[node name="History_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 102.0
-offset_right = 250.0
-offset_bottom = 132.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
-text = "History"
-
-[connection signal="body_entered" from="Ground/Leave_Area_01" to="Ground" method="_on_leave_area_01_body_entered"]
-[connection signal="body_entered" from="Ground/Leave_Area_02" to="Ground" method="_on_leave_area_02_body_entered"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/Start_Button" to="Welcome_window" method="_on_start_button_pressed"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/Welcome_Load_Button" to="Welcome_window" method="_on_welcome_load_button_pressed"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/History_Button" to="Welcome_window" method="_on_history_button_pressed"]
+[connection signal="body_entered" from="Leaving_Area_00" to="." method="_on_leaving_area_00_body_entered"]
+[connection signal="body_entered" from="Leaving_Area_01" to="." method="_on_leaving_area_01_body_entered"]

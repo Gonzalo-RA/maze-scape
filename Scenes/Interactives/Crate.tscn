@@ -129,7 +129,6 @@ frame = 5
 y_sort_enabled = true
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_weh1a")
-disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -138,7 +137,6 @@ collision_mask = 2
 [node name="hitbox_area" type="CollisionShape2D" parent="Hitbox"]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_vjfo2")
-disabled = true
 debug_color = Color(0.901961, 0.239216, 0.490196, 0.419608)
 
 [node name="crate_animation" type="AnimationPlayer" parent="."]
