@@ -1480,6 +1480,6 @@ func random_Item_Generator(Item_cat, Item_name = null):
 	return Rand_Item
 
 func compile_returned_item(THING) :
-	print(THING)
-	print('compile_returned_item')
+	#print(THING)
+	#print('compile_returned_item')
 	return THING 

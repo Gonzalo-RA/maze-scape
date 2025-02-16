@@ -109,6 +109,7 @@ func _ready():
 	
 	
 func _process(delta):
+	pass
 	#$sprite.set_frame_coords(Vector2i(ITEM.icon[0], ITEM.icon[1]))
 	#if Engine.is_editor_hint():
 		#if Loot_category == 'Coins' :
@@ -116,16 +117,15 @@ func _process(delta):
 		#elif Loot_category == 'Potions' :
 	#		icon = Items_DB[DB_name][Potion_].icon
 	#		$sprite.set_frame_coords(Vector2i(Items_DB[DB_name][Potion_].icon[0], Items_DB[DB_name][Potion_].icon[1]))
-	pass	
+		
 
 func _on_body_entered(body):
-	
 	if body.name == 'Hero':
 		if Loot_category == 'Coins' : #|| Loot.name == 'Gems' || Loot.name == 'Keys' :
+			#print('COINS')
 			BackPack.Treasure[Loot.name] += coin_value
 		else :
-			#print(ITEM)
-			if ITEM != null :
-				BackPack.add_to_bag(ITEM) 
+			if ITEM != null : #and Aeternus.Inventory.pickup_item(ITEM.unique_id):
+				BackPack.add_to_bag(ITEM)
 				#hero_data.emptpy_poquets = false
 		queue_free()	

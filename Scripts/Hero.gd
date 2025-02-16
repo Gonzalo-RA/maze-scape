@@ -53,8 +53,9 @@ var blocking = false
 func _ready():
 	hero_data.alive = true
 	$Hero_attack_area/Hero_attack_area_punch.disabled = true
-	Initial_Position = global_position
+	Initial_Position = hero_data.start_position
 	Aeternus.get_HERO(self)
+	print('READY')
 	
 func _physics_process(delta):
 	
@@ -126,7 +127,7 @@ func move() :
 			if hero_data.current_energy > 0 :
 				anim_state.travel('Run')	
 				current_state = states.CHARGE 
-				hero_data.current_energy -= 0.2
+				hero_data.current_energy -= 0.1
 		else :
 			velocity = input_movement * hero_data.speed
 		
@@ -203,17 +204,15 @@ func dead():
 		hero_data.current_health = hero_data.max_health
 		hero_data.current_energy = hero_data.max_energy
 		hero_data.XP = Aeternus.XP_LEVELS[str(hero_data.Level)]
-		self.global_position = Initial_Position #get_node("%SpawnPosition").global_position
+		self.global_position = hero_data.start_position # Aeternus.##Initial_Position #get_node("%SpawnPosition").global_position
 		current_state = states.MOVE
 		returning_from_the_death = false
 		
 func return_items():
-	#print('RETURN ITEMS 2')
+
 	if !hero_data.alive :
 		## Esto elimina los items equipados
-
 		equiped.delete_return_items()
-		#print('for hero_data.Equiped_Items -> remove')
 		for remove in hero_data.Equiped_Items :
 			hero_data.remove_item(hero_data.Equiped_Items[remove], true)
 		hero_data.Equiped_Items = {}
@@ -226,24 +225,25 @@ func return_items():
 		#print('Aquí revisamos la copia EQUIPED de Aeternus ')
 		for item in Aeternus.EQUIPED :
 			if Aeternus.EQUIPED[item] != null :
-				print(Aeternus.EQUIPED[item])
-				var rd_value = RandomNumberGenerator.new()
-				var the_thing = returned_item.instantiate()
-				the_thing.Data = BackPack.Back_Pack[Aeternus.EQUIPED[item].name]
-				the_thing.position =  position # hero_data.dead_position
-				the_thing.position.x = position.x + randf_range(-10, 10) # hero_data.dead_position.x + randf_range(-10, 10)
-				the_thing.position.y = position.y + randf_range(-10, 10) # hero_data.dead_position.y + randf_range(-10, 10) 
-				get_tree().get_root().add_child(the_thing)
+				#print(Aeternus.EQUIPED[item])
+				Aeternus.return_item_to_the_ground(item)
+				#var rd_value = RandomNumberGenerator.new()
+				#var the_thing = returned_item.instantiate()
+				#the_thing.Data = BackPack.Back_Pack[Aeternus.EQUIPED[item].name]
+				#the_thing.position =  position # hero_data.dead_position
+				#the_thing.position.x = position.x + randf_range(-10, 10) # hero_data.dead_position.x + randf_range(-10, 10)
+				#the_thing.position.y = position.y + randf_range(-10, 10) # hero_data.dead_position.y + randf_range(-10, 10) 
+				#get_tree().get_root().add_child(the_thing)
 		
 		var treasure_reduce_factor = 20 #100 - hero_data.Chance
 		var treasure_reduction = floor(BackPack.Treasure['Coins'] / 100) * 20 # treasure_reduce_factor
+		print( 'treasure_reduction -> ', treasure_reduction)
 		BackPack.Treasure['Coins'] -= (BackPack.Treasure['Coins'] - treasure_reduction)
 		
 		if !BackPack.Important_Items.is_empty():
 			for importantItem in BackPack.Important_Items :
 				BackPack.Back_Pack[importantItem] = BackPack.Important_Items[importantItem]
 			BackPack.Important_Items = {}	
-
 
 func anim_equipment_update ():
 	for path in hero_data.Equipment_Data :

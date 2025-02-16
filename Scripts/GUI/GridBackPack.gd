@@ -31,17 +31,22 @@ func insert_item(item):
 		return true
 		
 	elif get_item_under_pos(item_pos) != null :
+		print('Aqui está ocupado pero intentaremos ponerlo y cambiarlo')
 		var hold_item_id_arr = item.get_meta('id').split("_", false, 2)
+		#print(hold_item_id_arr)
 		var hold_item_id = hold_item_id_arr[0] + hold_item_id_arr[1]
 		var base_item_id_arr = get_item_under_pos(item_pos).get_meta('id').split("_", false, 2)
 		var base_item_id = base_item_id_arr[0] + base_item_id_arr[1]
+		
 		var hold_item_stackable = item.get_meta('stackable')
 		var base_item_stackable = get_item_under_pos(item_pos).get_meta('stackable')
 		if item.get_meta('id') != null && hold_item_id == base_item_id && hold_item_stackable && base_item_stackable :
 			return stacking_items(item, get_item_under_pos(item_pos))
 	else :
-		print('No mas espacio disponible')
+		#print('No mas espacio disponible')
 		return false
+func check_if_stakable():
+	pass		
 
 func stacking_items(hold_Item, base_Item):
 	#return Aeternus.Stack_Items(hold_Item, base_Item)
@@ -49,7 +54,6 @@ func stacking_items(hold_Item, base_Item):
 	var newStack
 	var restantStack
 	#print(hold_Item)
-	#print(base_Item)
 	if !base_Item.has_meta("stack"):
 		base_Item.set_meta("stack", base_ItemStack )
 	else :
@@ -140,14 +144,17 @@ func get_item_under_pos(pos):
 	return null
  
 func insert_item_at_first_available_spot(item, rl = false):
-	print('here reloaded in insert_item_at_first_available_spot')
-	print(item)
-	print('RL', rl)
+	if BackPack.Back_Pack[item.name].has('occupied_slot') :
+		if BackPack.Back_Pack[item.name] != null and BackPack.Back_Pack[item.name].occupied_slot != null:
+			#print('AQUI INSERTAR EN EQUIPED Y NO EN GRID ')
+			equiped.insert_after_load(item, BackPack.Back_Pack[item.name].occupied_slot)
+			return true
 	for y in range(grid_height):
 		for x in range(grid_width):
 			if !grid[x][y]:
 				item.global_position = global_position + Vector2(x, y) * cell_size
 				if insert_item(item):
+					#print('ITEM INSERTADO')
 					return true
 	return false
 

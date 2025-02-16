@@ -105,6 +105,7 @@ static var state = "Normal" # Normal, Poisoned, trapped, Invulnerable
 # var performing = "idle" # Running, Jumping, Charging //  attacking
 # var moving = false
 static var dead_position
+static var start_position
 
 static var Level = 1
 static var Next_level = Level + 1
@@ -282,7 +283,7 @@ static func update_stats() :
 	block_absortion =  Armor_absorption + Strength_modificator
 	
 	TO_UPDATE = true
-	print('Stats Updated (hero_data)')
+	#print('Stats Updated (hero_data)')
 
 #static func update_weapon(updated_weapon, add):
 	#print('update_weapon')
@@ -302,7 +303,7 @@ static func update_characteristics(equiped_item, add):
 	update_stats()
 
 static func wear_items(it):
-	print('wear_items')
+	#print('wear_items')
 	Equiped_Items[it.name] = BackPack.Back_Pack[it.name]
 	#print(Equiped_Items)
 	var Equiped_Item = BackPack.Back_Pack[it.name]
@@ -462,4 +463,6 @@ static func drink_potion(potion) :
 		Invulnerable(potion)
 		
 		
+
+
 

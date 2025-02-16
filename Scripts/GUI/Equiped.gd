@@ -2,6 +2,7 @@ extends Panel
 class_name equiped
  
 @onready var slots = get_children()
+static var SLOTS 
 static var items = { 
 				"WEAPON": null ,
 				"SHIELD": null ,
@@ -16,17 +17,36 @@ static var items = {
 				"NECKLACE_1": null ,
 				"NECKLACE_2": null ,
 }
- 
+
+const item_base = preload("res://Scenes/UI/item_base.tscn")
 @onready var returned_item = preload('res://Scenes/map_items/returned_item.tscn')
+@onready var inventary = $".."
+
+static var items_position = { 
+				"WEAPON": null ,
+				"SHIELD": null ,
+				"CHEST": null ,
+				"HEAD": null ,
+				"RING_1": null ,
+				"RING_2": null ,
+				"GLOVES": null ,
+				"FETISH": null ,
+				"FEET": null ,
+				"BELT": null ,
+				"NECKLACE_1": null ,
+				"NECKLACE_2": null ,
+}
 
 func _ready():
-	pass
+	SLOTS = slots
+	for slot in SLOTS:
+		items_position[slot.name] =  slot.position
+	#print(items_position)	
  
 func insert_item(item):
-	print('insert item // Equiped.gd')
+	#print('insert item // Equiped.gd')
 	var item_pos = item.global_position + item.size / 2
 	var slot = get_slot_under_pos(item_pos)
-	print ('ultima llamada -> Equiped.gd -> insert_item(item):')
 	if slot == null:
 		return false
 	var item_slot = BackPack.get_item(item.get_meta("id"))["slot"]
@@ -54,71 +74,39 @@ func insert_item(item):
 	items[slot.name] = item
 	item.global_position = slot.global_position + slot.size / 2 - item.size / 2
 	hero_data.wear_items(item)
-	#Aeternus.EQUIPED = items
 	return true
 
+static func insert_after_load(item, slot):
+	for sl in SLOTS :
+		if sl.name == BackPack.Back_Pack[item.name].occupied_slot :
+			items[sl.name] = item
+			item.global_position = sl.global_position + sl.size / 2 - item.size / 2
+			hero_data.wear_items(item)
+	
 
-var Yoyo 
-func _input(event):
-	pass
-	if Yoyo != null :
-		if event is InputEventMouseButton:
-			print("Mouse Click/Unclick at: ", event.position)
-			print(Yoyo.name)
-		elif event is InputEventMouseMotion:
-			print("Mouse Motion at: ", event.position)
-			Yoyo.global_position = event.position
-			#print('YOYO P#osition : ', Yoyo.position )
-
-func insert_item_after_load():
-	print('insert_item_after_load')
-	##for it in items :
-		##items[it] = null	
+static func load_equiped_slots():
+	print('- load_equiped_slots - ')
+	for reload_it in items :
+		if items[reload_it] != null :
+			var reloaded_item = item_base.instantiate()
+			var the_item_name = items[reload_it].get_slice(':',0)
+			##print(hero_data.Equiped_Items[the_item_name])
+			reloaded_item.set_meta("id", the_item_name)
+			reloaded_item.texture = load(hero_data.Equiped_Items[the_item_name]['icon_inventary']) 
+			reloaded_item.name = the_item_name #BackPack.get_item(item_id)["name"]
+			reloaded_item.set_meta('stackable', hero_data.Equiped_Items[the_item_name]['stackable'])
+			reloaded_item.set_meta('name', the_item_name)
+			#print('AHORA SI : -> ' , the_item_name)
+			items[reload_it] = reloaded_item
+			#inventary.add_child(reloaded_item)
+			#print(get_parent())
+		else :
+			pass
+			#print(reload_it)	
 	#print(items)
-	#print('-----------')
-	for item in items :
-		if items[item] != null :
-			 # [&"id", &"stackable", &"name", &"occupied_slot"]
-			items[item].name = items[item].get_meta('name')
-			Yoyo = items[item]
-			#BackPack.Back_Pack[items[item].get_meta('name')].global_position
-			for element_slot in slots :
-				#print(element_slot)
-				if element_slot.name == items[item].get_meta('occupied_slot') :
-					##items.remove_at(items.find(item))
-					items[item].global_position = element_slot.global_position + element_slot.size / 2 - items[item].size / 2
-					for grd_itms in $"../Base_Grid".items :
-						if grd_itms.name == items[item].name :
-							pass
-							
-					#print($"../Base_Grid".items.find([items[item]])) # [items[item]].get_texture()
-					##print(items[item])
-					#$"../Base_Grid".remove_from_items(items[item])
-					##print($"../Base_Grid".get_children())
-					#print(BackPack.Back_Pack[items[item].name])
-					#print($"../Base_Grid".items)
-					## get_viewport().get_mouse_position()
-
-					#print(items[item].global_position)
-					#print(BackPack.Back_Pack)
-					##get_thing_under_pos(slots, pos)
-					
-		#var item_pos = item.global_position + item.size / 2
-		#var slot = get_slot_under_pos(item_pos)
-		#var item_slot = BackPack.get_item(item.get_meta("id"))["slot"]
-		#item.set_meta('occupied_slot', slot.name )
-		#BackPack.Back_Pack[item.get_meta("name")].occupied_slot = str(slot.name)
-		#items[slot.name] = item
-		#item.global_position = slot.global_position + slot.size / 2 - item.size / 2
-		#hero_data.wear_items(item)
-		#print('ITEMS')
-		#
-	print(items)
-	print('-----------')
  
 
 func grab_item(pos):
-	#print('GRAP POS')
 	if BackPack.INVENTORY_IS_VISIBLE:
 		var item = get_item_under_pos(pos)
 		if item == null:
@@ -142,14 +130,10 @@ func get_thing_under_pos(arr, pos):
 	return null
 	
 static func delete_return_items():
-	#print('equiped ---- retun item')
-	#print('CLONAR  "items" en AETERNUS ')	
 	for it_to_del in items  :
 			if items[it_to_del] :
 				var clon = items[it_to_del].duplicate() 
 				Aeternus.EQUIPED[it_to_del] = clon
-				#print('fue clonado y copiado a Aeternus.EQUIPED -> ', clon)
-				#print('aqui se eliminan los ítmens originales de Equiped')
 				var itd = items[it_to_del]
 				itd.queue_free()
 				items[it_to_del] = null

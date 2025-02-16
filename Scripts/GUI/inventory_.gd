@@ -12,6 +12,7 @@ const item_base = preload("res://Scenes/UI/item_base.tscn")
 @onready var BeltSlot4 = $BeltSlot_4
 #@onready var BeltSlot5 = $BeltSlot_5
 @onready var Trash = $Trash
+#@onready var Mochila = $Mochila
 
 @onready var Item_info = $Item_Info
 
@@ -31,15 +32,16 @@ var offset_up
 var Belt_offset
 
 func _ready():	
+	Aeternus.get_inventory(self)
 	offset_up = get_offset(1)
 	Belt_offset = BeltSlot1.get_offset(1)
 	get_items_in_BackPack()
 
 func get_items_in_BackPack() :
-	print('inventory_.gd : 40 // ', 'get_items_in_BackPack' )
+	#print('inventory_.gd : 40 // ', 'get_items_in_BackPack' )
 	is_reload = true
 	for Items in BackPack.Back_Pack:
-		print(Items)
+		#print(Items)
 		pickup_item(Items)
 	is_reload = false	
 
@@ -72,12 +74,17 @@ func _process(_d):
 		#belt_offset_off(BeltSlot5)
 		BackPack.INVENTORY_IS_VISIBLE = false
 
-	if BackPack.INVENTORY_UPDATED :
+	#if BackPack.INVENTORY_UPDATED :
 		#print(' .............. INVENTORY_UPDATED  --- Inventory')
-		var new_item_id = BackPack.new_item.unique_id #if BackPack.new_item.itemClass != 'potion' else BackPack.new_item.name
-		pickup_item(new_item_id)
+		#var new_item_id = BackPack.new_item.unique_id #if BackPack.new_item.itemClass != 'potion' else BackPack.new_item.name
+		#pickup_item(BackPack.new_item.unique_id)
 		#pickup_item(BackPack.new_item)
-	
+	if BackPack.INVENTORY_TO_RELOAD:
+		for it_to_reload in BackPack.Back_Pack:
+			#print('TO RELOAD BP')
+			pickup_item(BackPack.Back_Pack[it_to_reload]['unique_id'])	
+		BackPack.INVENTORY_TO_RELOAD = false
+		
 func grab(cursor_pos):
 	#print('grab - inventory')
 	var c = get_container_under_cursor(cursor_pos)
@@ -95,7 +102,7 @@ func grab(cursor_pos):
 			else :
 				if item_held.get_parent().name != "Inventory_" :
 					print(item_held.get_parent().name)
-				else :	
+				else :
 					move_child(item_held, get_child_count())
 		else :
 			return false			
@@ -189,7 +196,8 @@ func release(cursor_pos):
 	if c.name == "Trash" :
 		print('FUERA!!!')
 		drop_item()
-	elif c.has_method("insert_item"):
+		return
+	if c.has_method("insert_item"):
 		if c.insert_item(item_held):
 			item_held = null
 		else:
@@ -206,7 +214,8 @@ func get_container_under_cursor(cursor_pos):
 	
 
 func drop_item(): 
-	print('item eliminado -> ' , item_held)
+	Aeternus.return_item_to_the_ground(item_held)
+	#print('item eliminado -> ' , item_held)
 	# Podría poner una advertencia antes de accionar ... 
 	item_held.queue_free()
 	item_held = null
@@ -218,7 +227,7 @@ func return_item():
 	item_held = null
  
 func pickup_item(item_id):
-	print('inventory_.gd : 235 -> pickup item : item_id : ' + item_id)
+	#print('inventory_.gd : 228 -> pickup item : item_id : ' + item_id)
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(BackPack.Back_Pack[item_id]['icon_inventary']) 
@@ -226,15 +235,13 @@ func pickup_item(item_id):
 	item.set_meta('stackable', BackPack.Back_Pack[item_id]['stackable'])
 	item.set_meta('name', item_id)
 	if !is_reload :
-		print('no es reload')
 		add_child(item)
-		#print(is_reload)
 		BackPack.INVENTORY_UPDATED = false
 		if !grid_bkpk.insert_item_at_first_available_spot(item, is_reload):
-			print('NO HAY MAS ESPACIO DISPONIBLE!!!!!')
+			#print('NO HAY MAS ESPACIO DISPONIBLE!!!!!')
+			Aeternus.return_item_to_the_ground(item)
 			item.queue_free()
 			return false
-	# print('jumped !grid_bkpk')	
 	return true
 
 func belt_offset_on(this):		
