@@ -88,10 +88,6 @@ var save_file_path = "user://save_game_json.json"
 func _ready():
 	randomize()
 	#Hero_Data = preload('res://Scripts/Hero_data.gd')
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func get_HERO(Hero):
 	if Hero == null:
@@ -132,10 +128,8 @@ func refresh_hero():
 	var new_hero = HERO.instantiate()
 	MAIN_TREE.add_child(new_hero)
 	HERO = new_hero
-	#print('Hero refreshed')
 
 func return_item_to_the_ground(the_item ):
-	print('AQUI LO DEVOLVEMOS ..... ')
 	var rd_value = RandomNumberGenerator.new()
 	var the_thing = returned_item.instantiate()
 	var item_name
@@ -161,63 +155,34 @@ func  clear_inventory():
 	GUI = new_gui
 
 func change_Scene(next_stage_name, new):
-	print('CURRENT SCENE')
-	print(CURRENT_SCENE)
 	var New_scene_path = 'res://Scenes/Levels/' + next_stage_name + '.tscn'
 	var New_Scene = load(New_scene_path) ## elemento a cargar
 	var New_Stage = StagesDB.Stages[next_stage_name] ## diccionario con informacione
 	var MAIN_TREE_children = MAIN_TREE.get_children().duplicate()
-	#var to_free = []
 
-	if !new :
-		print('No es nueva escena')
-	
-	#MAIN_TREE_children = MAIN_TREE.get_children()
-	print('Current_stage -> ', Current_stage )
 	for child in MAIN_TREE_children  :
 		if child.name == 'Welcome_window':
 			Welcome_window = child
 		if child.name == 'Ground':
-			print('-------- Es Ground -------- ')
-			print(MAIN_TREE)
-			#print(MAIN_TREE.get_node(child.name)) #.queue_free()
-			#to_free.push(child)
-			child.queue_free()	
-		if child.is_class('Node2D') :
-			if child.name == Current_stage :
-				print('-------- Es Node2D -------- ')
-				print(child)
-				#MAIN_TREE.get_node(child.name).queue_free()
-				child.queue_free()	
-				#to_free.push(child)
-		if child.is_class("TileMap") :
+			child.queue_free()
+		elif child.is_class("TileMap") :
 			if child.name == Current_stage or child.name == 'Map':
-				print('-------- Es TileMap -------- ')
 				child.queue_free()
-				#to_free.push(child)
-				
-	## o mas facil 
-	##if CURRENT_SCENE != null :
-	##	 CURRENT_SCENE.queue_free()
-	##### HAY UN PROBLEMA CON "CURRENT_SCENE" ... ÉSTA SE ACTUALIZA EN ALGÚN OTRO LADO
-	###### DE ALGUNA MANERA NO SE ELIMINAN LAS ESCENAS PASADAS Y SE ACUMULAN EN MAIN_TREE
-	###### HAY QUE BUSCAR UNA MANERA DE ELIMIARLAS. 
-	CURRENT_SCENE = New_Scene.instantiate()
-	print('DE NUEVO CURRENT SCENE')
-	print(CURRENT_SCENE)
-	call_deferred('new_scene_add_child', CURRENT_SCENE)
+		if child.is_class('Node2D') :
+			if child.name.contains('Stage_') or child.name.contains('World_Map') : 
+				child.queue_free()	
+	
+	# Esperar un frame para que se procesen las llamadas a queue_free()
+	await get_tree().create_timer(0.01).timeout # Un pequeño retraso es suficiente
+	var The_New_Scene= New_Scene.instantiate()
+	call_deferred('new_scene_add_child', The_New_Scene)
 
-			
 # Función que se ejecutará DEFERRED
 func new_scene_add_child(curr_scene):
-	print(' ------- deferred -----------')
-	print(MAIN_TREE)
-	print(curr_scene)
-	for child in MAIN_TREE.get_children():
-		print(child)
+	
 	MAIN_TREE.add_child(curr_scene)
 	Current_stage = curr_scene.name
-	var Current_scene_children = CURRENT_SCENE.get_children()
+	var Current_scene_children = curr_scene.get_children()
 	CAMERA.get_map()
 	for child in Current_scene_children:
 		if child.name == 'Start_Area' :
@@ -229,8 +194,6 @@ func new_scene_add_child(curr_scene):
 	if Welcome_window != null :
 		Welcome_window.queue_free()
 		Welcome_window = null
-
-
 
 func percent_trough(percent):
 	return true if (rng.randi() % 100) <= percent else false 
