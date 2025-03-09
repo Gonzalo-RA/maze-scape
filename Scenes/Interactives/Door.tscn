@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2xxadce276pa"]
+
+[ext_resource type="Script" path="res://Scripts/map_items/Doors.gd" id="1_8wsf0"]
+[ext_resource type="Texture2D" uid="uid://bmvrstnkb2qr6" path="res://Assets/Images/Background/maps-assets.png" id="1_rpedj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3s2k6"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_on3xg"]
+size = Vector2(8, 8)
+
+[node name="Door" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_8wsf0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_rpedj")
+hframes = 19
+vframes = 9
+frame = 103
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3s2k6")
+
+[node name="Hit_Box_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_Box_Area"]
+shape = SubResource("RectangleShape2D_on3xg")
+debug_color = Color(0.835294, 0.321569, 0.564706, 0.419608)
+
+[connection signal="area_entered" from="Hit_Box_Area" to="." method="_on_hit_box_area_area_entered"]

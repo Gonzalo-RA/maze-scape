@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://7ptckhd8hqwx"]
+[gd_scene load_steps=8 format=3 uid="uid://7ptckhd8hqwx"]
 
 [ext_resource type="Script" path="res://Scripts/map_items/Teletransporter.gd" id="1_6qn1h"]
 [ext_resource type="Texture2D" uid="uid://bmvrstnkb2qr6" path="res://Assets/Images/Background/maps-assets.png" id="1_wnoi3"]
+[ext_resource type="AudioStream" uid="uid://u24b43vb6ssm" path="res://Assets/Sound/FX/Map/teletransporter_2.wav" id="3_3hxao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70o1x"]
 size = Vector2(8, 8)
@@ -64,6 +65,10 @@ libraries = {
 "": SubResource("AnimationLibrary_hihg8")
 }
 autoplay = "Being"
+
+[node name="Teleransporter_FX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3hxao")
+volume_db = 1.0
 
 [connection signal="body_entered" from="Space_A" to="." method="_on_space_a_body_entered"]
 [connection signal="body_exited" from="Space_A" to="." method="_on_space_a_body_exited"]
