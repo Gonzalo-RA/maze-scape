@@ -33,6 +33,10 @@ var Loot_list = [
 @export var Implement : Items_DB.IMPLEMENTS
 @onready var Implement_list = Items_DB.Implements_name_list
 
+@export var Key : Items_DB.KEYS
+@onready var Key_lists = Items_DB.Keys_name_list
+
+@export var Key_unique_code = 100000000
 #@export var Amulet : Items_DB.AMULETS
 #@onready var Amulet_list = Items_DB.Amulets_name_list
 
@@ -45,6 +49,7 @@ var Icon
 var rd_value #= RandomNumberGenerator.new() #(randi() % 20 + 1) * hero_data.Level
 var ITEM
 var Item_name
+
 #var selection 
 
 func _ready():
@@ -52,7 +57,7 @@ func _ready():
 	rd_value = RandomNumberGenerator.new()
 	if random_generated :
 		Loot_category = Random_Generated_Category 
-		if Loot_category != 'Gems' and  Loot_category != 'Keys' and  Loot_category != 'Scrolls':
+		if Loot_category != 'Gems' and  Loot_category != 'Scrolls':
 			DB_name = Loot_category + '_DB'
 	
 	match Loot_category :
@@ -94,8 +99,15 @@ func _ready():
 			Icon = Items_DB[DB_name][Item_name].icon
 			ITEM = Items_DB.random_Item_Generator(Loot_category)
 			$sprite.set_frame_coords(Vector2i(Icon[0],Icon[1]))
-		'Keys' :	
-			pass
+		'Keys' :
+			if random_generated :
+				Item_name = Key_lists[0] # [rd_value.randi_range(0,2)] # 
+			else :
+				Item_name = Key_lists[Key] if Key_lists[Key] != null else Key_lists[0]
+			Icon = Items_DB[DB_name][Item_name].icon
+			ITEM = Items_DB.key_generator(Loot_category, Item_name, Key_unique_code)
+			$sprite.set_frame_coords(Vector2i(Icon[0],Icon[1]))
+				
 		'Scrolls' :	
 			#ITEM = Items_DB[DB_name][Scroll_list[Scrolls]]
 			pass
@@ -105,19 +117,8 @@ func _ready():
 		'Random' :
 			pass
 	
-	
-	
-	
 func _process(delta):
 	pass
-	#$sprite.set_frame_coords(Vector2i(ITEM.icon[0], ITEM.icon[1]))
-	#if Engine.is_editor_hint():
-		#if Loot_category == 'Coins' :
-		#	$sprite.set_frame_coords(Vector2i(0, 3))
-		#elif Loot_category == 'Potions' :
-	#		icon = Items_DB[DB_name][Potion_].icon
-	#		$sprite.set_frame_coords(Vector2i(Items_DB[DB_name][Potion_].icon[0], Items_DB[DB_name][Potion_].icon[1]))
-		
 
 func _on_body_entered(body):
 	if body.name == 'Hero':

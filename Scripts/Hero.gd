@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+
+
+var NAME 
+
 ## PRELOAD INFORMATIONS 
 ## Anim
 @onready var anim_tree = $animation_tree
@@ -23,6 +27,10 @@ extends CharacterBody2D
 @onready var Invulnerability_Cooldown = $Invulnerability_Cooldown
 @onready var Armor_Cooldown = $Armor_Cooldown
 @onready var Strength_Cooldown = $Strength_Cooldown
+
+## sounds
+@onready var lose = $dead_1
+
 
 var input_movement =  Vector2.ZERO
 var Initial_Position
@@ -51,11 +59,12 @@ var Chance = hero_data.Chance
 var blocking = false
 
 func _ready():
+	NAME = hero_data.hero_name
 	hero_data.alive = true
 	$Hero_attack_area/Hero_attack_area_punch.disabled = true
 	Initial_Position = hero_data.start_position
 	Aeternus.get_HERO(self)
-	print('READY')
+	print('READY Hero')
 	
 func _physics_process(delta):
 	
@@ -101,6 +110,12 @@ func to_update() :
 	Aeternus.get_HERO(self)
 	
 func move() :
+	if Aeternus.IS_TALKING_SCENE :
+		anim_state.travel('Idle')
+		velocity = Vector2.ZERO
+		#print('IS_TALKING_IMPORTANT_SCENE')
+		return
+		
 	hero_data.alive = true
 	input_movement = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
 	enable_collisionSahpe()
@@ -192,6 +207,7 @@ func hurt_fx():
 func dead():
 	
 	if !returning_from_the_death :
+		lose.play()		
 		hero_data.dead_position = position
 		anim_state.travel('Dead')
 		print('DEAD')

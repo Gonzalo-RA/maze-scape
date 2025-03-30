@@ -72,7 +72,7 @@ func _on_stats_button_pressed():
 		stats_on = false
 
 func Write_info() :
-	Name.set_text("HAYUHIGUREN")
+	Name.set_text(hero_data.hero_name)
 	Level.set_text(str(hero_data.Level))
 	XP.set_text(str(hero_data.XP) + ' / ' + str(Aeternus.XP_LEVELS[str(hero_data.Level + 1)]))
 	Health.set_text( str(floor(hero_data.current_health)) + ' / ' +  str(hero_data.max_health) )

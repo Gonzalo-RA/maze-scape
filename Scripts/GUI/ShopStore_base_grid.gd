@@ -2,23 +2,30 @@ extends TextureRect
  
 @onready var inventory = $".."
 
-var items = []
+var items_store = []
  
-var grid = {}
+var ShopStore = {}
+
+var store_grid = {}
 var cell_size = 20
-var grid_width = 0
-var grid_height = 0
+var store_grid_width = 0
+var store_grid_height = 0
  
 func _ready():
 	var s = get_grid_size(self)
-	grid_width = s.x
-	grid_height = s.y
+	store_grid_width = s.x
+	store_grid_height = s.y
  
-	for x in range(grid_width):
-		grid[x] = {}
-		for y in range(grid_height):
-			grid[x][y] = false
+	for x in range(store_grid_width):
+		store_grid[x] = {}
+		for y in range(store_grid_height):
+			store_grid[x][y] = false
  
+func set_shop() :
+	for item in ShopStore :
+		print('item --------->>>>>>> ', item)
+		inventory.pickup_item(item, ShopStore)
+
 func insert_item(item):
 	var item_pos = item.global_position + Vector2(cell_size / 2, cell_size / 2)
 	var g_pos = pos_to_grid_coord(item_pos)
@@ -26,11 +33,14 @@ func insert_item(item):
 	if is_grid_space_available(g_pos.x, g_pos.y, item_size.x, item_size.y):
 		set_grid_space(g_pos.x, g_pos.y, item_size.x, item_size.y, true)
 		item.global_position = global_position + Vector2(g_pos.x, g_pos.y) * cell_size
+		
+		## Belt slot to remove
 		if str(item.get_parent().name).find("BeltSlot") > -1 :
 			item.reparent(get_parent())
 			BackPack.Back_Pack[item.get_meta('id')]['is_in_belt'] = null
-		items.append(item)
-		items = clean_Array(items)
+		
+		items_store.append(item)
+		items_store = clean_Array(items_store)
 		return true
 		
 	elif get_item_under_pos(item_pos) != null :
@@ -130,11 +140,12 @@ func set_label_and_meta(base_item, held_item, new_stock, rest_stock):
 		BackPack.Back_Pack[held_item.name]['stack'] = rest_stock
  
 func remove_from_items(item) :
-	for it in items :
+	for it in items_store :
 		if it.name == item.name :
-			items.remove_at(items.find(it))
+			items_store.remove_at(items_store.find(it))
 	
 func grab_item(pos):
+	print('grab_item -> ', pos)
 	if BackPack.INVENTORY_IS_VISIBLE :
 		var item = get_item_under_pos(pos)
 		if item == null:
@@ -143,7 +154,7 @@ func grab_item(pos):
 		var g_pos = pos_to_grid_coord(item_pos)
 		var item_size = get_grid_size(item)
 		set_grid_space(g_pos.x, g_pos.y, item_size.x, item_size.y, false)
-		items.remove_at(items.find(item))
+		items_store.remove_at(items_store.find(item))
 		return item
  
 func pos_to_grid_coord(pos):
@@ -164,21 +175,21 @@ func get_grid_size(item):
 func is_grid_space_available(x, y, w ,h):
 	if x < 0 or y < 0:
 		return false
-	if x + w > grid_width or y + h > grid_height:
+	if x + w > store_grid_width or y + h > store_grid_height:
 		return false
 	for i in range(x, x + w):
 		for j in range(y, y + h):
-			if grid[i][j]:
+			if store_grid[i][j]:
 				return false
 	return true
  
 func set_grid_space(x, y, w, h, state):
 	for i in range(x, x + w):
 		for j in range(y, y + h):
-			grid[i][j] = state
+			store_grid[i][j] = state
  
 func get_item_under_pos(pos):
-	for item in items:
+	for item in items_store:
 		if item.get_global_rect().has_point(pos):
 			return item
 	return null
@@ -210,9 +221,9 @@ func insert_item_at_first_available_spot(item, rl = false , merch_pack = null):
 			equiped.insert_after_load(item, Pack[item.name].occupied_slot)
 			return true
 	
-	for y in range(grid_height):
-		for x in range(grid_width):
-			if !grid[x][y]:
+	for y in range(store_grid_height):
+		for x in range(store_grid_width):
+			if !store_grid[x][y]:
 				item.global_position = global_position + Vector2(x, y) * cell_size
 				if insert_item(item):
 					return true

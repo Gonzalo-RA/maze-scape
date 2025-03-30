@@ -10,6 +10,8 @@ var Users = ['Hero', 'All']
 @onready var Brothers = get_parent().get_children()
 @onready var User = Users[Usage]
 
+@onready var transporter_fx = $Teleransporter_FX 
+
 var BRO
 var BRO_position
 var available = true
@@ -31,6 +33,7 @@ func _on_space_a_body_entered(body):
 				Teletransporter(body)
 
 func Teletransporter(body):
+		transporter_fx.play()
 		BRO.available = false
 		available = false
 		body.position = BRO_position		

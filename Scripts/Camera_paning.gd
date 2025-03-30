@@ -12,8 +12,8 @@ func _ready():
 #	limit_bottom = world_size.y
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print('camera paning')
 	position = player.position
 	var x = floor(position.x / 320 ) * 320
 	var y = floor(position.y / 180 ) * 180

@@ -4,7 +4,6 @@ extends StaticBody2D
 
 
 enum LOOT_TYPE { A, B, C, D, E , F, G, H, I, J, K, L, M, N, O, P, }
-
 @export var Loot_Category : LOOT_TYPE
 var Loot_list = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',]	
 
@@ -14,11 +13,8 @@ var Loot_value = Loot_list[Loot_Category]
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_hitbox_area_entered(area):
 	if area.name == 'Hero_attack_area' :

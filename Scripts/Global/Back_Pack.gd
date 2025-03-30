@@ -11,7 +11,7 @@ const ICON_PATH = "res://Assets/Images/Items/"
 var Back_Pack = {}
 var cinturon = {}
 var Important_Items = {}
-var new_item 
+#var new_item 
 
 var Treasure = {
 	'Coins': 0,
@@ -24,28 +24,35 @@ var Treasure = {
 }
 
 func add_to_bag(item):
-	#print('por qui add to bag ')
-	#var new_item_n add tame_key = item.unique_id #if item.itemClass != 'potion' else item.name
+	
+	#var Pack = merch_backpack if merch_backpack != null else Back_Pack
+	#var Inventory = 'Inventory' if merch_backpack == null else 'Merchant_Inventory'
+	#Pack[item.unique_id] = item 
+	#if !Aeternus[Inventory].pickup_item(item.unique_id, merch_backpack) :
+		#Pack.erase(Pack[item.unique_id])
+		#return false
+	
+		## antiguo ##
 	Back_Pack[item.unique_id] = item 
-	new_item = item
-	if Aeternus.Inventory.pickup_item(item.unique_id) :
-		print('por qui si funciona -> ', item.unique_id)
-	else :
+	if !Aeternus.Inventory.pickup_item(item.unique_id) :
 		Back_Pack.erase(Back_Pack[item.unique_id])
-		#print('por qui no funciona')
-		#print('Erase -> ', item.unique_id)
 		return false
 	
-	#INVENTORY_UPDATED = true
+	##if merch_backpack != null:
+		#print('is merchant')
+		#merch_backpack[item.unique_id] = item 
+		##print(merch_backpack)
+		##Aeternus.Merchant_Inventory.pickup_item(item.unique_id, merch_backpack)
+	##else :
+		##Pack[item.unique_id] = item 
+		##if !Aeternus.Inventory.pickup_item(item.unique_id, merch_backpack) :
+			##Back_Pack.erase(Back_Pack[item.unique_id])
+			##Pack.erase(Pack[item.unique_id])
+			##return false
+			
 
-#func re_load_BACKPACK(item_to_reload):
-	#print('re_load_BACKPACK')
-	##for item in Back_Pack :
-		##new_item = item
-		##print(Back_Pack[item]['unique_id'])
 	
-func get_the_new_item(_new_itemm):
-	pass
+	
 
 func get_item(item_id) :
 	if item_id in Back_Pack :
@@ -53,7 +60,3 @@ func get_item(item_id) :
 	else :
 		return Back_Pack["error"]
 
-#func delete_Items():
-	#item_held.queue_free()
-	#item_held = null
-	#to_drop = false

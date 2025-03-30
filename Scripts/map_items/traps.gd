@@ -1,11 +1,11 @@
-@tool
+#@tool
 extends Area2D
 
 enum TRAPS {SPIKE, GAS, WASH, PIT}
 @export var Trap_type : TRAPS
 
-var Current_stage = Aeternus.Current_stage ## Current stage name or ID
-var Stage_level =  Aeternus.Stage_level ## Difficulty Level 
+#var Current_stage = Aeternus.Current_stage ## Current stage name or ID
+var Stage_level # =  Aeternus.Stage_level ## Difficulty Level 
 
 var Traps_list = [ 'Spike', 'Gas', 'Wash', 'Pit', ]
 
@@ -74,6 +74,7 @@ var into = false
 var victim
 
 func _ready():
+	Stage_level =  Aeternus.Stage_level
 	Trap = Traps[Traps_list[Trap_type]]
 	$Sprite2D.set_frame_coords(Vector2i(Trap.Frame[0], Trap.Frame[1]))
 	if Trap.Animate :

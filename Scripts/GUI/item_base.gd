@@ -21,16 +21,15 @@ func _ready():
 	it_name = BackPack.Back_Pack[self.name].name
 	it_class = BackPack.Back_Pack[self.name].itemClass
 	it_rarity = BackPack.Back_Pack[self.name].rarity if it_class != 'potion' else ''	
-	dices = BackPack.Back_Pack[self.name].dices
+	dices = BackPack.Back_Pack[self.name].dices if it_class != 'key' else ''
 
-	if  it_class != 'potion' :
+	if  it_class != 'potion' and it_class != 'key' :
 		affectation = BackPack.Back_Pack[self.name].affectations ## ARRAY #if it_class == 'potion' else ''
 		for aff in affectation :
 			affectatio_text += aff + ' : ' + str(BackPack.Back_Pack[self.name].affectations[aff]) + '\n'
 	
 	text_to_display = str(it_name) + "\n--\n" + str(it_rarity) 
-	
-	if  it_class != 'potion' :
+	if  it_class != 'potion' and it_class != 'key':
 		text_to_display = text_to_display + "\n\n" + str(affectatio_text)
 		#Attribute_1.set_text(affectatio_text)
 		

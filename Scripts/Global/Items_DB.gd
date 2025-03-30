@@ -49,6 +49,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'skyn_armor',
 		'level' : 1,
+		'selling_price' : 0,
+		'buying_price' : 0,
 		'rarity' : "banal",
 		'icon' : [8,4],
 		'icon_inventary' :  null , #ICON_PATH + "Weapons/morning_star_1.png",
@@ -82,6 +84,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'leather_armor',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,3],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -115,6 +119,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'chain_armor',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,3],
 		'icon_inventary' :  ICON_PATH + "Weapons/chain_armor_1.png",
@@ -148,6 +154,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'plate_armor',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,3],
 		'icon_inventary' :  ICON_PATH + "Weapons/plate_armor_1.png",
@@ -181,6 +189,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'rondelle_shield',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [8,3],
 		'icon_inventary' :  ICON_PATH + "/leather_armor_1.png",
@@ -214,6 +224,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'heater_shield',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [8,3],
 		'icon_inventary' :  ICON_PATH + "Shield/.png",
@@ -247,6 +259,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'herladic_shield',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [8,3],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -280,6 +294,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'helmet',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -313,6 +329,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'garadian_helmet',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -346,6 +364,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'gonor_helmet',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -379,6 +399,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'close_helmet',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -412,6 +434,8 @@ var Armors_DB = {
 		'stack' : 1,
 		'type' : 'horned_helmet',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [7,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/leather_armor_1.png",
@@ -474,6 +498,8 @@ var Weapons_DB = {
 		'type' : 'long_sword',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [8,4],
 		'icon_inventary' : null, #ICON_PATH + "Weapons/long_sword_01.png",
@@ -506,6 +532,8 @@ var Weapons_DB = {
 		'type' : 'battle_axe',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [5,4],
 		'icon_inventary' : ICON_PATH + "Weapons/battle_axe_1.png",
@@ -538,6 +566,8 @@ var Weapons_DB = {
 		'type' : 'war_axe',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [5,4],
 		'icon_inventary' : ICON_PATH + "Weapons/war_axe_1.png",
@@ -570,6 +600,8 @@ var Weapons_DB = {
 		'type' : 'club',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [6,4],
 		'icon_inventary' : ICON_PATH + "Weapons/club_1.png",
@@ -602,6 +634,8 @@ var Weapons_DB = {
 		'type' : 'long_sword',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [5,3],
 		'icon_inventary' : ICON_PATH + "Weapons/long_sword_1.png",
@@ -634,6 +668,8 @@ var Weapons_DB = {
 		'type' : 'arabic_sword',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [5,3],
 		'icon_inventary' : ICON_PATH + "Weapons/arabic_sword_1.png",
@@ -666,6 +702,8 @@ var Weapons_DB = {
 		'type' : 'morning_star',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [4,3],
 		'icon_inventary' : ICON_PATH + "Weapons/morning_star_1.png",
@@ -698,6 +736,8 @@ var Weapons_DB = {
 		'type' : 'war_hammer',
 		'group_list' : 'Weapons',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [6,3],
 		'icon_inventary' : ICON_PATH + "Weapons/war_hammer_1.png",
@@ -754,8 +794,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'health potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [3,0], 
 		'icon_inventary' : ICON_PATH + 'Potions/red_potion_',
@@ -783,8 +827,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'energy potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [3,1], 
 		'icon_inventary' : ICON_PATH + 'Potions/cyan_potion_',
@@ -812,8 +860,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'recovery potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [0,0], 
 		'icon_inventary' : ICON_PATH + 'Potions/pink_potion_', # pink_potion_',
@@ -841,8 +893,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'Mana potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "magic",
 		'icon' : [6,0], 
 		'icon_inventary' : ICON_PATH + 'Potions/blue_potion_',
@@ -871,8 +927,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'strength potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [6,1], 
 		'icon_inventary' : ICON_PATH + 'Potions/yellow_potion_',
@@ -900,8 +960,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'armor potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [0,1], 
 		'icon_inventary' : ICON_PATH + 'Potions/green_potion_',
@@ -929,8 +993,12 @@ var Potions_DB = {
 		'group_list' : 'Potions',
 		'stackable' : true,
 		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
 		'type' : 'invulnerability potion',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [6,2], 
 		'icon_inventary' : ICON_PATH + 'Potions/white_potion_',
@@ -976,6 +1044,8 @@ var Implements_DB = {
 		'stack' : 1,
 		'type' : 'boots',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [9,3],
 		'icon_inventary' :  ICON_PATH + "Weapons/chain_armor_1.png",
@@ -1010,6 +1080,8 @@ var Implements_DB = {
 		'stack' : 1,
 		'type' : 'belt',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [9,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/chain_armor_1.png",
@@ -1044,6 +1116,8 @@ var Implements_DB = {
 		'stack' : 1,
 		'type' : 'gloves',
 		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'rarity' : "banal",
 		'icon' : [8,4],
 		'icon_inventary' :  ICON_PATH + "Weapons/chain_armor_1.png",
@@ -1093,6 +1167,8 @@ var Amulets_DB = { ## Create a random generator of amiulte, with powes and name
 		'itemClass' : 'amulet',
 		'importantItem' : false,
 		'class' : 'amulet',
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'icon' : [0,2],
 		'bonus_afect_to' : ["Armor"],
 		'bonus' : 5,
@@ -1108,6 +1184,8 @@ var Amulets_DB = { ## Create a random generator of amiulte, with powes and name
 		'itemClass' : 'amulet',
 		'importantItem' : false,
 		'class' : 'amulet',
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'bonus_afect_to' : ["Armor"],
 		'icon' : [0,2],
 		'bonus' : 5,
@@ -1123,6 +1201,8 @@ var Amulets_DB = { ## Create a random generator of amiulte, with powes and name
 		'itemClass' : 'amulet',
 		'importantItem' : false,
 		'class' : 'amulet',
+		'selling_price' : 10,
+		'buying_price' : 20,
 		'icon' : [0,2],
 		'bonus_afect_to' : ["Armor"],
 		'bonus' : 5,
@@ -1155,12 +1235,73 @@ var Runes_DB = {}
 
 ### Keys
 
-enum KEYS { NULL,
+enum KEYS { NORMAL_KEY, MASTER_KEY, SINGLE_KEY }
+var Keys_name_list = [ 'Normal Key', 'Master Key', 'Single Key', ]
+var Keys_DB = {
+	'Normal Key' : { # a key that opens all small doors   #
+		'name' : 'Normal Key',
+		'open_code' : 00,
+		'magic' : false,
+		'itemClass' : "key",
+		'importantItem' : false,
+		'group_list' : 'Keys',
+		'stackable' : true,
+		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
+		'type' : 'normal key',
+		'level' : 1,
+		'selling_price' : 1,
+		'buying_price' : 2,
+		'rarity' : "banal",
+		'icon' : [0,3], 
+		'icon_inventary' : ICON_PATH + 'Keys/key_normal.png',
+		'slot' : null,
+		'animation' : null,
+	},
+	'Master Key' : { # a key that opens all doors (except special)  #
+		'name' : 'Master Key',
+		'open_code' : 369,
+		'magic' : false,
+		'itemClass' : "key",
+		'importantItem' : false,
+		'group_list' : 'Keys',
+		'stackable' : true,
+		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
+		'type' : 'master key',
+		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
+		'rarity' : "rare",
+		'icon' : [0,3], 
+		'icon_inventary' : ICON_PATH + 'Keys/key_master.png',
+		'slot' : null,
+		'animation' : null,
+	},
+	'Single Key' : { # a single key for a single door #
+		'name' : 'Single Key',
+		'open_code' : 3030303030,
+		'magic' : false,
+		'itemClass' : "key",
+		'importantItem' : false,
+		'group_list' : 'Keys',
+		'stackable' : true,
+		'stack' : 1,
+		'stock' : 1,
+		'is_in_belt' : null,
+		'type' : 'single key',
+		'level' : 1,
+		'selling_price' : 10,
+		'buying_price' : 20,
+		'rarity' : "banal",
+		'icon' : [0,3], 
+		'icon_inventary' : ICON_PATH + 'Keys/key_single.png',
+		'slot' : null,
+		'animation' : null,
+	}
 }
-var Keys_name_list = [
-			null,
-]
-var Keys_DB = {}
 
 
 enum SPECIAL { NULL,
@@ -1233,6 +1374,9 @@ var GLOBAL_TREASURE_DICT = {
 	},
 	'Keys': {
 		'name' : 'Keys',
+		'options' : ['Normal Key', 'Master Key', 'Single_Key'],
+		'object' : Keys_DB,
+		'name_list' : Keys_name_list,
 	},
 	'Amulets' : {
 		'name' : 'Amulets',
@@ -1350,7 +1494,6 @@ func generate_loot(treasureType) :
 	var index = 0
 	for tr in TREASURE[treasureType] :
 		if Aeternus.percent_trough(tr[0] + Aeternus.HERO.Chance) :
-			#print(GLOBAL_TREASURE_LIST[index])
 			var quantity = Aeternus.dice_through(tr[1][0], tr[1][1])
 			treasure[GLOBAL_TREASURE_DICT[GLOBAL_TREASURE_LIST[index]].name] = quantity
 		index += 1
@@ -1412,6 +1555,11 @@ func random_Item_Generator(Item_cat, Item_name = null):
 	Rand_Item.icon_inventary = ICON_PATH + icon_path #Item_cat + '/'+ Item_type.to_lower().to_snake_case() + '_' + icon_level + '.png'
 	Rand_Item.stackable = false if Item_cat != 'Scrolls' or Item_cat != 'Potions' else true
 	Rand_Item.icon = Aeternus.get_icon_from_list(Item_cat + '_DB', Item_type.capitalize())
+	Rand_Item.selling_price = Rand_Item.selling_price * Rand_Item.level
+	Rand_Item.buying_price = Rand_Item.buying_price * Rand_Item.level
+	print('Rand_Item.selling_price -> ',Rand_Item.selling_price)
+	print('Rand_Item.buying_price -> ',Rand_Item.buying_price)
+
 
 	if Rand_Item.class == 'shield' :
 		Rand_Item.animation_front = Rand_Item.animation + '_front' + icon_number + '.png' if Rand_Item.animation != null else ''
@@ -1478,6 +1626,20 @@ func random_Item_Generator(Item_cat, Item_name = null):
 	#print(Rand_Item.unique_id)
 	
 	return Rand_Item
+
+func key_generator(Category, type, Key_unique_code):
+	#print('key_generator')
+	var Stage_level = Aeternus.Stage_level
+	var THE_KEY = Keys_DB[type].duplicate(true)
+	#print(THE_KEY)
+	THE_KEY.unique_id = generate_unique_ID(THE_KEY.name)
+	if type == 'Single Key' :
+		THE_KEY['open_code'] = [Key_unique_code] #if type == 'Single Key' else 00
+	elif type == 'Master Key' :
+		THE_KEY['open_code'] = [369]
+	else :
+		THE_KEY['open_code'] = [00]
+	return THE_KEY
 
 func compile_returned_item(THING) :
 	#print(THING)

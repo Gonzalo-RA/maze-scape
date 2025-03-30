@@ -8,6 +8,11 @@ class_name hero_data
 	# gold, potions, gems, weapons, scrolls, etc.
 # @onready var weapons_data = preload()  # this must to be all the data from a database. 
 
+static var hero_name = 'Geronimus'
+static var Portrait_path = "res://Assets/Images/Portraits/hero.png"
+static var PROGRESS = {'Progress' : {}, 'Missions' : {}, } ## Progress : { here the mandatory progression },   Missions : {} ,
+static var FOLLOWERS = {}
+static var NOTE_BOOK = {} ## Key events and things to know
 # DICTIONARY 
 # this must to be moved in to a general data JSON file, together with the whole liste of items 
 static var Weapons = {
@@ -142,7 +147,7 @@ static var base_energy = 100
 static var Item_energy_bonus = 0 
 static var max_energy = base_energy + (Strength_modificator * 10) + (Constitution_modificator * 10) + Item_energy_bonus #(Dexterity_modificator * 10) 
 static var Energy = max_energy  #Current Energy
-static var regen_energy = 0.01 + (Constitution_modificator / 100)
+static var regen_energy = 0.01 + (Constitution_modificator / 50)
 static var bonus_energy = 0
 static var current_energy = Energy
 
@@ -241,7 +246,7 @@ static func update_stats() :
 	Item_energy_bonus = Item_energy_bonus
 	max_energy = base_energy + (Strength_modificator * 10) + (Constitution_modificator * 10) + Item_energy_bonus + chart_of_equipment_modificators['Energy'] # (Dexterity_modificator * 10)
 	Energy = Energy if Energy <= max_energy else max_energy # max_energy  #Current Energy
-	regen_energy = 0.01 + (Constitution_modificator / 10)
+	regen_energy = 0.01 + (Constitution_modificator / 50)
 	bonus_energy = bonus_energy
 	current_energy = current_energy if current_energy <= max_energy else max_energy 
 	
@@ -464,5 +469,212 @@ static func drink_potion(potion) :
 		
 		
 
+static func reset_stats() :
+	
+	PROGRESS = {'Progress' : {}, 'Missions' : {}, }
+	FOLLOWERS = {}
+	NOTE_BOOK = {} ## Key events and things to know
+	
+	Weapons = {
+		'Punch' : {
+			'name' : 'Punch',
+			'damage' : 10,
+			'speed' : 6,
+			'scope'	: 10,
+			'dices' : [1,4],
+			'attackBonus' : 0,
+			'damageBonus' : 0,
+			'attack_scope' : 10,
+			'bonus' : 0,
+			'magic'	: false,
+			'durability' : 100,
+			#'Damage_modificator' : 0,
+		}
+	}
+
+# STATS
+
+	chart_of_equipment_modificators = {
+		'Strength' : 0,#Strength ,
+		'Constitution' : 0,#Constitution ,
+		'Dexterity' : 0,#Dexterity ,
+		'Intelligence' : 0,#Intelligence ,
+		'Wisdom' : 0,#Wisdom ,
+		'Charisma' : 0,#Charisma ,
+		'Chance' : 0,#chart_of_equipment_modificators['] #chance_bonus,
+		'Attack' : 0,#Item_attack_bonus ,
+		'Armor' : 0,#Item_armor_bonus ,
+		'Health' : 0,
+		'Speed' : 0,
+		'Mana' : 0,
+		'Energy' : 0,#Item_energy_bonus,
+		'Damage' : 0,#Item_damage_bonus,
+		'Absorption' : 0,
+	}
+
+	Ported_armor = {
+		"Natural Armor" : {
+			'name' : "Natural Armor",
+			'itemClass' : "armor",
+			'stackable' : false,
+			'stack' : 1,
+			'type' : 'skyn_armor',
+			'level' : 1,
+			'rarity' : "banal",
+			'icon' : [8,4],
+			'icon_inventary' :  null , #ICON_PATH + "Weapons/morning_star_1.png",
+			'animation' : null,
+			'speed' : 1,
+			'dices' : [0,0],
+			'dice': 1,
+			'dicesQuantity': 1,
+			'bonus': null,
+			'damage_type' : null,
+			'attack_scope' : 'body', 
+			'bonus_afect_to' : 'Armor',
+			'state_afected' : null,
+			'cooldown' : null ,
+			'attackBonus': 0,
+			'damageBonus' : 0,
+			'defense': 0,
+			'absorption' : 0,
+			'defenseDice': 0,
+			'defenseDicesQuantity': 0,
+			'defenseBonus': 0,
+			'afectedCharacteristics' : null,
+			'bonusToCharacteristic' : null,
+		},
+	}
 
 
+	# 	var level = 1 # this info coming from a JSON file
+
+	size = 'medium' # medium, large, extra large, geant, small, extra small, diminute
+	speed = 20
+
+	# LOT & ITEMS
+
+	equiped_weapon = ['Punch',]
+	Weapon = Weapons[equiped_weapon[0]]
+	equiped_armor = ['Natural Armor',]
+	#hero_data.Weapons[hero_data.equiped_weapon[0]]Natural Armor['damage']
+
+	Equiped_Items = {}
+
+	TO_UPDATE = false
+	ANIM_EQUIPMENT_UPDATE = true
+	# Stats 
+
+	alive = true
+	state = "Normal" # Normal, Poisoned, trapped, Invulnerable
+	# performing = "idle" # Running, Jumping, Charging //  attacking
+	# moving = false
+	dead_position
+	start_position
+
+	Level = 1
+	Next_level = Level + 1
+	XP = 0
+	Points_to_distribute = 0
+	difference_btw_levels = 300
+	lives = 5
+	TO_LEVEL_UP = false 
+
+	Strength = 10
+	Constitution = 10
+	Dexterity = 10
+	Intelligence = 10
+	Wisdom = 10
+	Charisma = 10
+
+	# Weapon = Items_DB.ITEMS_DB['Punch']
+	Embestida
+	Ported_Armor =  Ported_armor[equiped_armor[0]] #Items_DB.ITEMS_DB[equiped_armor[0]] #
+
+	Strength_modificator = floor(( (chart_of_equipment_modificators['Strength'] + Strength) - 10) / 2)
+	Constitution_modificator =  floor(( (chart_of_equipment_modificators['Constitution'] + Constitution) - 10) / 2)
+	Dexterity_modificator =  floor(( (chart_of_equipment_modificators['Dexterity'] + Dexterity) - 10) / 2)
+	Intelligence_modificator =  floor(( (chart_of_equipment_modificators['Intelligence'] + Intelligence) - 10) / 2)
+	Wisdom_modificator =  floor(( (chart_of_equipment_modificators['Wisdom'] + Wisdom ) - 10) / 2)
+	Charisma_modificator =  floor(( (chart_of_equipment_modificators['Charisma'] + Charisma) - 10) / 2)
+
+	temporal_strength_modificator = 0
+
+	base_energy = 100
+	Item_energy_bonus = 0 
+	max_energy = base_energy + (Strength_modificator * 10) + (Constitution_modificator * 10) + Item_energy_bonus #(Dexterity_modificator * 10) 
+	Energy = max_energy  #Current Energy
+	regen_energy = 0.01 + (Constitution_modificator / 50)
+	bonus_energy = 0
+	current_energy = Energy
+
+	#Sprint_energy = 100 + (Strength_modificator * 10) + (Constitution_modificator * 10) + (Dexterity_modificator * 10)
+
+	base_health = 20
+	max_health = base_health + Constitution_modificator + chart_of_equipment_modificators['Health'] #health_bonus
+	Health = max_health # Current Health
+	regen_health = 0.1 + (Constitution_modificator / 10)
+	bonus_health = 0
+
+	base_mana = 100 
+	max_mana = base_mana + Intelligence_modificator + chart_of_equipment_modificators['Mana'] #mana_bonus
+	Mana = max_mana 
+	current_mana = Mana
+	bonus_mana = 0
+
+	Speed = 20 + (Dexterity_modificator )
+	Current_speed = Speed
+	Charging_speed = Speed + (Strength_modificator )
+
+	Weapon_speed_modificator = Weapon.speed # Weapons[equiped_weapon[0]].speed # Items_DB.ITEMS_DB[equiped_weapon[0]].speed
+
+	Attack_speed = 9 + Dexterity_modificator + Weapon.speed   # Items_DB.ITEMS_DB[equiped_weapon[0]].speed
+	Attack_modifcicator = Dexterity_modificator + Strength_modificator + Weapon.attackBonus + chart_of_equipment_modificators['Attack'] #attack_bonus# Items_DB.ITEMS_DB[equiped_weapon[0]].attackBonus
+
+	Damage_modificator = temporal_strength_modificator + Strength_modificator +  Weapon.damageBonus + chart_of_equipment_modificators['Damage'] #damage_bonus ##Items_DB.ITEMS_DB[equiped_weapon[0]].damageBonus 
+	attack_distance =  Weapon.attack_scope # Items_DB.ITEMS_DB[equiped_weapon[0]].attack_scope
+
+	natural_armor = 10
+	ported_armor_defence = Ported_Armor.defense + Ported_Armor.defenseBonus + chart_of_equipment_modificators['Armor'] #armor_bonus
+	Armor_absorption = Ported_Armor.absorption + chart_of_equipment_modificators['Absorption']
+	temportal_armor_bonus = 0
+
+# -------- COOL DOWN -------- #
+
+	armor_cooldown 
+	strength_cooldown
+
+# -------- CHANCE -------- #
+
+	Initial_chance = 50
+	chance_temporal_bonus = 0
+	Chance = Initial_chance + Wisdom_modificator + chance_temporal_bonus + chart_of_equipment_modificators['Chance'] #chance_bonus
+
+# --–––––----- FINAL -------------- #
+
+	Armor = natural_armor + ported_armor_defence + temportal_armor_bonus
+	Attack = Attack_modifcicator
+	current_health = max_health
+	block_absortion =  Armor + Armor_absorption + Strength_modificator
+	blocking = false
+
+# ---------- Enemy -------- #
+
+	Enemy_in_attack_range = false 
+
+
+# ------- Equipment ------- # 
+
+	Equipment_Data = {
+		'HEAD' : null,
+		'WEAPON' : null,
+		'SHIELD' : null,
+		'CHEST' : null,
+		'BELT' : null,
+		'FEET' : null,
+		'GLOVES' : null,
+	}
+
+	print('Aqui reset el cinturón también')
+	Aeternus.HERO.to_update()
+	#Aeternus.refresh_hero()

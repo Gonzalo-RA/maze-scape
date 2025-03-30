@@ -1,4 +1,4 @@
-extends pnj_mover
+extends enemy_mover
 
 # ENEMY
 
@@ -39,4 +39,5 @@ func hit(damage):
 
 func _on_attack_area_area_entered(area):
 	if  area.name == 'Hitbox' :
-		Aeternus.match_Attack(self, area.get_parent()) 
+		if area.get_parent().name == 'Hero' :
+			Aeternus.match_Attack(self, area.get_parent()) 
