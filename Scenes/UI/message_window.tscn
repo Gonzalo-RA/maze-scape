@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://de65bktxii1nv"]
+
+[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="1_jogjg"]
+
+[node name="Message_Window" type="ConfirmationDialog"]
+title = "This a  message"
+initial_position = 1
+size = Vector2i(300, 100)
+theme = ExtResource("1_jogjg")
+dialog_text = "Are you sure that you want to iniciate "
+dialog_autowrap = true

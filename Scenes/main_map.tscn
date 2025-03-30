@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2owdlpis53pk"]
+[gd_scene load_steps=13 format=3 uid="uid://d2owdlpis53pk"]
 
 [ext_resource type="PackedScene" uid="uid://cq6ni4ty75022" path="res://Scenes/hero.tscn" id="1_frcie"]
 [ext_resource type="PackedScene" uid="uid://cqsqyq1wa6bk" path="res://Scenes/Interactives/Crate.tscn" id="2_jr6ep"]
@@ -9,31 +9,11 @@
 [ext_resource type="Script" path="res://Scripts/Map/Ground.gd" id="5_rqn83"]
 [ext_resource type="PackedScene" uid="uid://dsmqogx1njr83" path="res://Scenes/map_items/loot_items.tscn" id="7_j0dli"]
 [ext_resource type="PackedScene" uid="uid://d24aht5nw6hd3" path="res://Scenes/UI/gui.tscn" id="7_riumo"]
-[ext_resource type="PackedScene" uid="uid://dgbvlcmhh4ybx" path="res://Scenes/PNJ/Enemies/NonDeads/enemy_basic_agresive.tscn" id="8_uvmma"]
 [ext_resource type="PackedScene" uid="uid://7ptckhd8hqwx" path="res://Scenes/Interactives/Teletransporter.tscn" id="9_3q8q0"]
-[ext_resource type="Script" path="res://Scripts/GUI/Welcome_window.gd" id="12_a24to"]
-[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="12_jvdle"]
+[ext_resource type="PackedScene" uid="uid://duu3n206btgmt" path="res://Scenes/UI/welcome_window.tscn" id="12_xy3qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g481r"]
 size = Vector2(6.5, 6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhxem"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pv7c"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tudn"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p7a5"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df0ey"]
-bg_color = Color(0.666667, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4vko"]
-bg_color = Color(0.666667, 0, 0, 1)
 
 [node name="main_map" type="Node2D"]
 y_sort_enabled = true
@@ -107,26 +87,6 @@ Trap_type = 2
 [node name="Traps51" parent="Ground" instance=ExtResource("5_8hwa3")]
 z_index = -1
 position = Vector2(348, 27)
-
-[node name="Skeleton 02" parent="Ground" instance=ExtResource("8_uvmma")]
-position = Vector2(261, 157)
-Type_of_PNJ = 1
-Monster_list = 3
-
-[node name="Skeleton 03" parent="Ground" instance=ExtResource("8_uvmma")]
-position = Vector2(118, 68)
-Type_of_PNJ = 1
-Monster_list = 3
-
-[node name="Skeleton 04" parent="Ground" instance=ExtResource("8_uvmma")]
-position = Vector2(90, 153)
-Type_of_PNJ = 1
-Monster_list = 3
-
-[node name="Skeleton 05" parent="Ground" instance=ExtResource("8_uvmma")]
-position = Vector2(261, 28)
-Type_of_PNJ = 1
-Monster_list = 3
 
 [node name="Lot_items" parent="Ground" instance=ExtResource("7_j0dli")]
 position = Vector2(208, 106)
@@ -217,61 +177,7 @@ player = NodePath("../Hero")
 
 [node name="GUI" parent="." instance=ExtResource("7_riumo")]
 
-[node name="Welcome_window" type="CanvasLayer" parent="."]
-process_mode = 2
-script = ExtResource("12_a24to")
-
-[node name="Welcome_Background" type="ColorRect" parent="Welcome_window"]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.333333, 0.333333, 0.333333, 1)
-
-[node name="Welcome_Control" type="Control" parent="Welcome_window"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 368.0
-offset_top = 382.0
-offset_right = 768.0
-offset_bottom = 542.0
-
-[node name="Start_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 3.0
-offset_right = 250.0
-offset_bottom = 33.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mhxem")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1pv7c")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2tudn")
-text = "New Game"
-
-[node name="Welcome_Load_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 53.0
-offset_right = 250.0
-offset_bottom = 83.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
-text = "Load Game"
-
-[node name="History_Button" type="Button" parent="Welcome_window/Welcome_Control"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 102.0
-offset_right = 250.0
-offset_bottom = 132.0
-theme = ExtResource("12_jvdle")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
-text = "History"
+[node name="Welcome_window" parent="." instance=ExtResource("12_xy3qa")]
 
 [connection signal="body_entered" from="Ground/Leave_Area_01" to="Ground" method="_on_leave_area_01_body_entered"]
 [connection signal="body_entered" from="Ground/Leave_Area_02" to="Ground" method="_on_leave_area_02_body_entered"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/Start_Button" to="Welcome_window" method="_on_start_button_pressed"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/Welcome_Load_Button" to="Welcome_window" method="_on_welcome_load_button_pressed"]
-[connection signal="pressed" from="Welcome_window/Welcome_Control/History_Button" to="Welcome_window" method="_on_history_button_pressed"]

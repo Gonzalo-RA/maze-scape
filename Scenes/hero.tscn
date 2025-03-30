@@ -1,9 +1,10 @@
-[gd_scene load_steps=115 format=3 uid="uid://cq6ni4ty75022"]
+[gd_scene load_steps=116 format=3 uid="uid://cq6ni4ty75022"]
 
 [ext_resource type="Script" path="res://Scripts/Hero.gd" id="1_r7lcr"]
 [ext_resource type="Texture2D" uid="uid://cuh6vo677n5ut" path="res://Assets/Images/Spritesheets/Hero/hero.png" id="2_nsce7"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/hurt_shade.gdshader" id="2_wkn78"]
 [ext_resource type="Texture2D" uid="uid://cxg0l7q1fkdyd" path="res://Assets/Images/Spritesheets/necked.png" id="4_ns4hb"]
+[ext_resource type="AudioStream" uid="uid://bef1v7u51pw8x" path="res://Assets/Sound/FX/Hero/lose.wav" id="5_p3mfj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lj7ii"]
 resource_local_to_scene = true
@@ -4718,7 +4719,7 @@ frame = 37
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="WEAPON" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
@@ -4730,37 +4731,37 @@ frame = 145
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="HEAD" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="BOOTS" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="BELT" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="GLOVES" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="SHIELD_front" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_ns4hb")
 hframes = 9
 vframes = 24
-frame = 108
+frame = 109
 
 [node name="hero_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -4768,6 +4769,7 @@ libraries = {
 }
 
 [node name="CollisionShape_base" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 shape = SubResource("RectangleShape2D_w5cfs")
 disabled = true
 
@@ -4812,6 +4814,10 @@ one_shot = true
 
 [node name="Invulnerability_Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="dead_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_p3mfj")
+volume_db = 1.0
 
 [connection signal="timeout" from="Armor_Cooldown" to="." method="_on_armor_cooldown_timeout"]
 [connection signal="timeout" from="Strength_Cooldown" to="." method="_on_strength_cooldown_timeout"]

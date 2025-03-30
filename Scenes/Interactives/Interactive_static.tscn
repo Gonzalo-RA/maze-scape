@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq7konfe31f61"]
+
+[ext_resource type="Script" path="res://Scripts/map_items/interactive_body.gd" id="1_xvtvg"]
+[ext_resource type="Texture2D" uid="uid://bmvrstnkb2qr6" path="res://Assets/Images/Background/maps-assets.png" id="2_10h2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoav8"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkhj6"]
+radius = 5.09902
+
+[node name="Interactive_Static" type="StaticBody2D"]
+script = ExtResource("1_xvtvg")
+Portrait = "res://Assets/Images/Items/Amulets/fetish_1.png"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_10h2o")
+hframes = 19
+vframes = 9
+frame = 57
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uoav8")
+
+[node name="Interactive_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="interactive_area" type="CollisionShape2D" parent="Interactive_Area"]
+shape = SubResource("CircleShape2D_fkhj6")
+
+[connection signal="area_entered" from="Interactive_Area" to="." method="_on_interactive_area_area_entered"]
+[connection signal="area_exited" from="Interactive_Area" to="." method="_on_interactive_area_area_exited"]

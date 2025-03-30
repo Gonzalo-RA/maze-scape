@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d24aht5nw6hd3"]
+[gd_scene load_steps=43 format=3 uid="uid://d24aht5nw6hd3"]
 
 [ext_resource type="Texture2D" uid="uid://4elfhyhv23qr" path="res://Assets/Images/GUI/UI.png" id="1_8k1ol"]
 [ext_resource type="Script" path="res://Scripts/GUI/control_center.gd" id="1_id3kw"]
@@ -21,9 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://egsgycx43toh" path="res://Assets/Images/GUI/Char_button_p_mdm.png" id="16_ly5ky"]
 [ext_resource type="Texture2D" uid="uid://rwdeoqvg8f32" path="res://Assets/Images/GUI/Save_button_h_mdm.png" id="17_t2qcs"]
 [ext_resource type="Texture2D" uid="uid://ymtjjjx4bqle" path="res://Assets/Images/GUI/Save_button_p_mdm.png" id="18_p2cd4"]
-[ext_resource type="Texture2D" uid="uid://ctpw70qjhrjvs" path="res://Assets/Images/GUI/Load_button_h_mdm.png" id="19_7c8rx"]
-[ext_resource type="Texture2D" uid="uid://bkxw4jahjpsnb" path="res://Assets/Images/GUI/Load_button_p_mdm.png" id="20_1xg2c"]
 [ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="20_cahnu"]
+[ext_resource type="Theme" uid="uid://b7l8wi78pb3a4" path="res://Assets/Styles/button_menu.tres" id="23_emket"]
+[ext_resource type="PackedScene" uid="uid://c5paeqdeq0uy2" path="res://Scenes/UI/dialogue_window.tscn" id="24_1gqil"]
 
 [sub_resource type="Theme" id="Theme_mfbyg"]
 
@@ -33,7 +33,55 @@
 default_font = ExtResource("7_mvvrx")
 default_font_size = 19
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0qym"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iadrd"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tifu8"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvebr"]
+bg_color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_judp2"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwb6w"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty33f"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5nj3"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5svdy"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n806e"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oufih"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wdny"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1y6h"]
+bg_color = Color(0.666667, 0, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7j76"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ciupr"]
+bg_color = Color(0.666667, 0.666667, 0.666667, 1)
+
 [node name="GUI" type="CanvasLayer"]
+process_mode = 3
 offset = Vector2(0, 559)
 scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 559)
@@ -205,66 +253,394 @@ offset_right = 384.0
 theme = ExtResource("20_cahnu")
 color = Color(0, 0, 0.666667, 1)
 
-[node name="Label" type="Label" parent="Menu_Screen"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 60.0
-offset_bottom = 43.0
-text = "Paused"
-
-[node name="Save_Button" type="Button" parent="Menu_Screen"]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 49.0
-offset_right = 191.0
-offset_bottom = 63.0
-theme_override_fonts/font = ExtResource("7_mvvrx")
-theme_override_font_sizes/font_size = 6
-
-[node name="save_button" type="TextureButton" parent="Menu_Screen/Save_Button"]
+[node name="Menu_Screen_control" type="Control" parent="Menu_Screen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -7.0
-offset_right = 5.5
-offset_bottom = 7.00003
+offset_left = -117.5
+offset_top = -83.0
+offset_right = 117.5
+offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("17_t2qcs")
-texture_pressed = ExtResource("18_p2cd4")
 
-[node name="Load_Button" type="Button" parent="Menu_Screen"]
+[node name="Save_button" type="Button" parent="Menu_Screen/Menu_Screen_control"]
 layout_mode = 0
-offset_left = 180.0
-offset_top = 70.0
-offset_right = 191.0
-offset_bottom = 84.0
-theme_override_fonts/font = ExtResource("7_mvvrx")
-theme_override_font_sizes/font_size = 6
+offset_left = 49.0
+offset_top = 56.0
+offset_right = 249.0
+offset_bottom = 76.0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("23_emket")
+theme_type_variation = &"Menu_btn"
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tifu8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_judp2")
+text = "Save game"
 
-[node name="load_button" type="TextureButton" parent="Menu_Screen/Load_Button"]
+[node name="Load_button" type="Button" parent="Menu_Screen/Menu_Screen_control"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 75.6663
+offset_right = 249.0
+offset_bottom = 95.6663
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "Load game
+"
+
+[node name="History_nd_missions_button" type="Button" parent="Menu_Screen/Menu_Screen_control"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 94.0003
+offset_right = 249.0
+offset_bottom = 114.001
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "History & missions
+"
+
+[node name="Resume_game_button" type="Button" parent="Menu_Screen/Menu_Screen_control"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 113.0
+offset_right = 249.0
+offset_bottom = 133.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "Resume game
+"
+
+[node name="Back_home_screen" type="Button" parent="Menu_Screen/Menu_Screen_control"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 131.666
+offset_right = 249.0
+offset_bottom = 151.666
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "Home screen
+"
+
+[node name="Label" type="Label" parent="Menu_Screen/Menu_Screen_control"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 220.0
+offset_bottom = 34.0
+text = "Game Menu"
+horizontal_alignment = 1
+
+[node name="Options_Screen" type="ColorRect" parent="Menu_Screen"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -7.0
-offset_right = 5.5
-offset_bottom = 7.00003
+offset_left = -117.0
+offset_top = -83.0
+offset_right = 117.0
+offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("19_7c8rx")
-texture_pressed = ExtResource("20_1xg2c")
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Save_Screen" type="Control" parent="Menu_Screen/Options_Screen"]
+visible = false
+anchors_preset = 0
+offset_right = 235.0
+offset_bottom = 166.0
+
+[node name="Save_btn1" type="Button" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 64.333
+offset_right = 248.0
+offset_bottom = 84.333
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pwb6w")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ty33f")
+text = "- empty slot -"
+
+[node name="Save_btn2" type="Button" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 87.9993
+offset_right = 248.0
+offset_bottom = 107.999
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o5nj3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5svdy")
+text = "- empty slot -
+"
+
+[node name="Save_btn3" type="Button" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 112.333
+offset_right = 248.0
+offset_bottom = 132.333
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n806e")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "- empty slot -
+"
+
+[node name="Ok_save_btn" type="Button" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 174.333
+offset_top = 138.0
+offset_right = 194.333
+offset_bottom = 158.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "OK
+"
+
+[node name="Cancel_save_btn" type="Button" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 47.6667
+offset_top = 138.0
+offset_right = 67.6667
+offset_bottom = 158.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "X"
+
+[node name="Label" type="Label" parent="Menu_Screen/Options_Screen/Save_Screen"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 220.0
+offset_bottom = 34.0
+text = "Save your journey"
+horizontal_alignment = 1
+
+[node name="Load_Screen" type="Control" parent="Menu_Screen/Options_Screen"]
+visible = false
+anchors_preset = 0
+offset_right = 235.0
+offset_bottom = 166.0
+
+[node name="Load_btn1" type="Button" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 64.333
+offset_right = 249.0
+offset_bottom = 84.333
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oufih")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+disabled = true
+text = "- empty slot -"
+
+[node name="Load_btn2" type="Button" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 87.9993
+offset_right = 249.0
+offset_bottom = 107.999
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7wdny")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+disabled = true
+text = "- empty slot -
+"
+
+[node name="Load_btn3" type="Button" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 112.333
+offset_right = 249.0
+offset_bottom = 132.333
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n1y6h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+disabled = true
+text = "- empty slot -
+"
+
+[node name="Ok_load_btn" type="Button" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 175.333
+offset_top = 138.0
+offset_right = 195.333
+offset_bottom = 158.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "OK
+"
+
+[node name="Cancel_load_btn" type="Button" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 138.0
+offset_right = 69.0
+offset_bottom = 158.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_s0qym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iadrd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qvebr")
+text = "X"
+
+[node name="Label" type="Label" parent="Menu_Screen/Options_Screen/Load_Screen"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 220.0
+offset_bottom = 34.0
+text = "Load a journey"
+horizontal_alignment = 1
+
+[node name="Confirmation_Dialog_Window" type="ColorRect" parent="Menu_Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -74.5
+offset_right = 161.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.258824, 0.258824, 0.258824, 0)
+
+[node name="Background_panel" type="ColorRect" parent="Menu_Screen/Confirmation_Dialog_Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = 35.0
+offset_right = -74.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Menu_Screen/Confirmation_Dialog_Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -25.5
+offset_right = 191.0
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "You are about to leave your current game.
+Are you sure that you want to quite it?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="OK_confirm" type="Button" parent="Menu_Screen/Confirmation_Dialog_Window"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 225.333
+offset_top = -52.6667
+offset_right = 246.333
+offset_bottom = -32.6667
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_p7j76")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ciupr")
+text = "Ok
+"
+
+[node name="Cancel_confirm" type="Button" parent="Menu_Screen/Confirmation_Dialog_Window"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = -52.6667
+offset_right = 135.0
+offset_bottom = -32.6667
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_p7j76")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ciupr")
+text = "Cancel 
+"
+
+[node name="Dialogue_Window" parent="." instance=ExtResource("24_1gqil")]
 
 [connection signal="pressed" from="Inventory_Button/inventory_button" to="Inventory_" method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="Stats_Button/stats_button" to="Stats" method="_on_stats_button_pressed"]
 [connection signal="pressed" from="Menu_Button/menu_button" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Menu_Screen/Save_Button/save_button" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Menu_Screen/Load_Button/load_button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Menu_Screen/Menu_Screen_control/Save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Menu_Screen/Menu_Screen_control/Load_button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Menu_Screen/Menu_Screen_control/History_nd_missions_button" to="." method="_on_history_nd_missions_button_pressed"]
+[connection signal="pressed" from="Menu_Screen/Menu_Screen_control/Resume_game_button" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Menu_Screen/Menu_Screen_control/Back_home_screen" to="." method="_on_back_home_screen_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Save_Screen/Save_btn1" to="." method="_on_save_btn_1_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Save_Screen/Save_btn2" to="." method="_on_save_btn_2_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Save_Screen/Save_btn3" to="." method="_on_save_btn_3_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Save_Screen/Ok_save_btn" to="." method="_on_ok_save_btn_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Save_Screen/Cancel_save_btn" to="." method="_on_cancel_save_btn_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Load_Screen/Load_btn1" to="." method="_on_load_btn_1_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Load_Screen/Load_btn2" to="." method="_on_load_btn_2_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Load_Screen/Load_btn3" to="." method="_on_load_btn_3_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Load_Screen/Ok_load_btn" to="." method="_on_ok_load_btn_pressed"]
+[connection signal="pressed" from="Menu_Screen/Options_Screen/Load_Screen/Cancel_load_btn" to="." method="_on_cancel_load_btn_pressed"]
+[connection signal="pressed" from="Menu_Screen/Confirmation_Dialog_Window/OK_confirm" to="." method="_on_ok_confirm_pressed"]
+[connection signal="pressed" from="Menu_Screen/Confirmation_Dialog_Window/Cancel_confirm" to="." method="_on_cancel_confirm_pressed"]

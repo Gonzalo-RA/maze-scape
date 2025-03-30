@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu5v05hqcbn8k"]
+[gd_scene load_steps=11 format=3 uid="uid://cu5v05hqcbn8k"]
 
 [ext_resource type="Script" path="res://Scripts/Map/Stage_0_01.gd" id="1_3kdwe"]
 [ext_resource type="TileSet" uid="uid://df2lg2xsr51r3" path="res://Assets/Images/Background/main_map.tres" id="2_o0xo1"]
@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dgbvlcmhh4ybx" path="res://Scenes/PNJ/Enemies/NonDeads/enemy_basic_agresive.tscn" id="6_kdrdu"]
 [ext_resource type="PackedScene" uid="uid://dsmqogx1njr83" path="res://Scenes/map_items/loot_items.tscn" id="7_e4s7n"]
 [ext_resource type="PackedScene" uid="uid://7ptckhd8hqwx" path="res://Scenes/Interactives/Teletransporter.tscn" id="8_nrfcf"]
+[ext_resource type="PackedScene" uid="uid://urlb8o6a8a2i" path="res://Scenes/PNJ/PNJ.tscn" id="9_uyhoi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4bej"]
 size = Vector2(10, 10)
 
 [node name="Stage_0_01" type="Node2D"]
 script = ExtResource("1_3kdwe")
+Stage_name = "Forest of Skulls"
 
 [node name="Ground" type="TileMap" parent="." groups=["Maps", "Pausable"]]
 y_sort_enabled = true
@@ -74,23 +76,15 @@ position = Vector2(348, 27)
 
 [node name="Skeleton 02" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(261, 157)
-Type_of_PNJ = 1
-Monster_list = 3
 
 [node name="Skeleton 03" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(118, 68)
-Type_of_PNJ = 1
-Monster_list = 3
 
 [node name="Skeleton 04" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(90, 153)
-Type_of_PNJ = 1
-Monster_list = 3
 
 [node name="Skeleton 05" parent="Ground" instance=ExtResource("6_kdrdu")]
 position = Vector2(261, 28)
-Type_of_PNJ = 1
-Monster_list = 3
 
 [node name="Lot_items" parent="Ground" instance=ExtResource("7_e4s7n")]
 position = Vector2(208, 106)
@@ -153,20 +147,29 @@ position = Vector2(262, 60)
 Portal_number = 99
 Usage = 1
 
+[node name="PNJ_generic" parent="Ground" instance=ExtResource("9_uyhoi")]
+position = Vector2(55, 19)
+
 [node name="Start_Area" type="Area2D" parent="."]
-position = Vector2(15, 27)
+position = Vector2(13, 13)
 
 [node name="start_point" type="CollisionShape2D" parent="Start_Area"]
 shape = SubResource("RectangleShape2D_b4bej")
 
+[node name="Arriving_Area_01" type="Area2D" parent="."]
+position = Vector2(378, 13)
+
+[node name="start_point" type="CollisionShape2D" parent="Arriving_Area_01"]
+shape = SubResource("RectangleShape2D_b4bej")
+
 [node name="Leaving_Area_00" type="Area2D" parent="."]
-position = Vector2(380, 131)
+position = Vector2(-3, 189)
 
 [node name="leaving_point" type="CollisionShape2D" parent="Leaving_Area_00"]
 shape = SubResource("RectangleShape2D_b4bej")
 
 [node name="Leaving_Area_01" type="Area2D" parent="."]
-position = Vector2(378, 185)
+position = Vector2(378, 187)
 
 [node name="leaving_point" type="CollisionShape2D" parent="Leaving_Area_01"]
 shape = SubResource("RectangleShape2D_b4bej")

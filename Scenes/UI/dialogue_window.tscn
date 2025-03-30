@@ -1,0 +1,189 @@
+[gd_scene load_steps=17 format=3 uid="uid://c5paeqdeq0uy2"]
+
+[ext_resource type="FontFile" uid="uid://c07pmahltohdo" path="res://Assets/Fonts/iso8.ttf" id="1_dx6i8"]
+[ext_resource type="Script" path="res://Scripts/GUI/dialogue_window.gd" id="1_v13fm"]
+[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="2_jglkl"]
+[ext_resource type="Texture2D" uid="uid://dqn6ymhf41hy6" path="res://Assets/Images/Portraits/normal_happy.png" id="3_c2w2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xoe2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pysf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v55m6"]
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmf5p"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymvl4"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvmqh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4raff"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxuga"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gidbe"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcb65"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34wd0"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqce7"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Dialogue_Window" type="CanvasLayer"]
+script = ExtResource("1_v13fm")
+
+[node name="Text_Container" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -303.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_jglkl")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Panel" type="Panel" parent="Text_Container"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2xoe2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Text_Container/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -198.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Panel" type="Panel" parent="Text_Container/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1pysf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Text_Container/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Portrait_block" type="PanelContainer" parent="Text_Container/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(118, 118)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="portrait" type="Sprite2D" parent="Text_Container/Panel/MarginContainer/HBoxContainer/Portrait_block"]
+position = Vector2(60, 60)
+scale = Vector2(5, 5)
+texture = ExtResource("3_c2w2r")
+
+[node name="Start" type="Label" parent="Text_Container/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_dx6i8")
+theme_override_font_sizes/font_size = 27
+text = "*"
+
+[node name="Text" type="Label" parent="Text_Container/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(828, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_dx6i8")
+theme_override_font_sizes/font_size = 23
+text = "Text hola amigos, espero que todo esté yendo super bien en todo, había una vez un profesor chifladongo que se cansongo de sus alongos. "
+label_settings = SubResource("LabelSettings_v55m6")
+autowrap_mode = 2
+justification_flags = 161
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Continue" type="Button" parent="Text_Container/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_pressed_color = Color(0.333333, 0.333333, 1, 1)
+theme_override_colors/font_hover_color = Color(0.333333, 0.333333, 1, 1)
+theme_override_fonts/font = ExtResource("1_dx6i8")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmf5p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ymvl4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvmqh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4raff")
+text = "V
+"
+
+[node name="btn_0x" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(538, 30)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -930.0
+offset_top = 81.0
+offset_right = -126.0
+offset_bottom = 111.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="btn_0x"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rxuga")
+
+[node name="Estrellita" type="Label" parent="btn_0x/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="btn_00" type="Button" parent="btn_0x"]
+custom_minimum_size = Vector2(760, 27)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_dx6i8")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gidbe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bcb65")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_34wd0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lqce7")
+text = "Este es un texto de prueba "
+flat = true
+alignment = 0
+clip_text = true
+
+[connection signal="pressed" from="Text_Container/Panel/MarginContainer/HBoxContainer/Continue" to="." method="_on_continue_pressed"]

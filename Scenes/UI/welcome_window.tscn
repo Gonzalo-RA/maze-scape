@@ -1,0 +1,262 @@
+[gd_scene load_steps=15 format=3 uid="uid://duu3n206btgmt"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Welcome_window.gd" id="1_wnvs0"]
+[ext_resource type="AudioStream" uid="uid://k8pmopc2b2qw" path="res://Assets/Sound/FX/UI/puntito.wav" id="2_4k67v"]
+[ext_resource type="Theme" uid="uid://ckcd8vghlpx5w" path="res://Assets/Styles/UI.tres" id="2_qrc2l"]
+[ext_resource type="AudioStream" uid="uid://327vdixbbp6p" path="res://Assets/Sound/FX/UI/vibracion_aguda.wav" id="3_5nlqu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhxem"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pv7c"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tudn"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p7a5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df0ey"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4vko"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pncq"]
+bg_color = Color(0.257476, 0.257476, 0.257476, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jgru"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs5fr"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw27e"]
+bg_color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Welcome_window" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_wnvs0")
+
+[node name="Selec" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(413, 517)
+stream = ExtResource("2_4k67v")
+
+[node name="Start" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(413, 517)
+stream = ExtResource("3_5nlqu")
+volume_db = 0.72
+
+[node name="Welcome_Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="Welcome_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 382.0
+offset_right = 768.0
+offset_bottom = 542.0
+
+[node name="Start_Button" type="Button" parent="Welcome_Control"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 3.0
+offset_right = 250.0
+offset_bottom = 33.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mhxem")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1pv7c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2tudn")
+text = "New Game"
+
+[node name="Welcome_Load_Button" type="Button" parent="Welcome_Control"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 53.0
+offset_right = 250.0
+offset_bottom = 83.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
+text = "Load Game"
+
+[node name="History_Button" type="Button" parent="Welcome_Control"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 102.0
+offset_right = 250.0
+offset_bottom = 132.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0p7a5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_df0ey")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4vko")
+text = "History"
+
+[node name="Load_window" type="ColorRect" parent="."]
+visible = false
+offset_left = 378.0
+offset_top = 235.0
+offset_right = 761.0
+offset_bottom = 575.0
+theme = ExtResource("2_qrc2l")
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Load_stage1" type="Button" parent="Load_window"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 88.0
+offset_right = 350.0
+offset_bottom = 118.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+disabled = true
+text = "- empty slot -
+"
+
+[node name="Load_stage2" type="Button" parent="Load_window"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 128.0
+offset_right = 350.0
+offset_bottom = 158.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+disabled = true
+text = "- empty slot -
+"
+
+[node name="Load_stage3" type="Button" parent="Load_window"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 168.0
+offset_right = 350.0
+offset_bottom = 198.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+disabled = true
+text = "- empty slot -
+"
+
+[node name="Ok_welcome_load" type="Button" parent="Load_window"]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 282.0
+offset_right = 353.0
+offset_bottom = 312.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+disabled = true
+text = "OK"
+
+[node name="Cancel_welcome_load" type="Button" parent="Load_window"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 282.0
+offset_right = 82.0
+offset_bottom = 312.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+text = "cancel"
+
+[node name="Enter_name_window" type="ColorRect" parent="."]
+visible = false
+offset_left = 378.0
+offset_top = 235.0
+offset_right = 761.0
+offset_bottom = 575.0
+theme = ExtResource("2_qrc2l")
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Enter_name_window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.5
+offset_top = 75.0
+offset_right = 127.5
+offset_bottom = 102.0
+grow_horizontal = 2
+text = "Enter your hero's name"
+horizontal_alignment = 1
+
+[node name="OK_enter_name" type="Button" parent="Enter_name_window"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 282.0
+offset_right = 349.0
+offset_bottom = 312.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+disabled = true
+text = "OK"
+
+[node name="Cancel_enter_name" type="Button" parent="Enter_name_window"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 282.0
+offset_right = 85.0
+offset_bottom = 312.0
+theme = ExtResource("2_qrc2l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pncq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0jgru")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cs5fr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cw27e")
+text = "cancel"
+
+[node name="Enter_hero_name" type="LineEdit" parent="Enter_name_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -12.5
+offset_right = 104.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "your hero's name"
+alignment = 1
+max_length = 30
+expand_to_text_length = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_force_displayed = true
+
+[connection signal="pressed" from="Welcome_Control/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Welcome_Control/Welcome_Load_Button" to="." method="_on_welcome_load_button_pressed"]
+[connection signal="pressed" from="Welcome_Control/History_Button" to="." method="_on_history_button_pressed"]
+[connection signal="pressed" from="Load_window/Load_stage1" to="." method="_on_load_stage_1_pressed"]
+[connection signal="pressed" from="Load_window/Load_stage2" to="." method="_on_load_stage_2_pressed"]
+[connection signal="pressed" from="Load_window/Load_stage3" to="." method="_on_load_stage_3_pressed"]
+[connection signal="pressed" from="Load_window/Ok_welcome_load" to="." method="_on_ok_welcome_load_pressed"]
+[connection signal="pressed" from="Load_window/Cancel_welcome_load" to="." method="_on_cancel_welcome_load_pressed"]
+[connection signal="pressed" from="Enter_name_window/OK_enter_name" to="." method="_on_ok_enter_name_pressed"]
+[connection signal="pressed" from="Enter_name_window/Cancel_enter_name" to="." method="_on_cancel_enter_name_pressed"]
